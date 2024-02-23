@@ -1,0 +1,39 @@
+.reservation-section {
+    float: left;
+    width: 40%;
+}
+
+.reservation-card {
+    width: 75%;
+    background-color: #385dff;
+    padding: 20px;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-favorites-section {
+    float: right;
+    width: 60%;
+    padding: 20px;
+}
+
+.favorite-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.favorite-card {
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+}

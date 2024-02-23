@@ -1,0 +1,47 @@
+.grid {
+    display: grid;
+    grid-template-rows: 100px;
+    grid-template-columns: 50% 1fr;
+}
+
+.search-form {
+    height: 65px;
+    margin-right: 10px;
+}
+
+.search-form__item {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 0px;
+    align-items: center;
+    width: 100%;
+}
+
+.area {
+    width: 20%;
+}
+
+.genre {
+    width: 20%;
+}
+
+.name {
+    width: 60%;
+}
+
+/* 飲食店カードの配置 */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.restaurant-card {
+    height: 314px;
+    width: 314px;
+    margin: 0 10px 20px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    background-color: #fff;
+}
