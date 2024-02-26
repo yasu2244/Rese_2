@@ -42,3 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+
+class User extends Model
+{
+    protected $fillable = ['name', 'email', 'password'];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+}

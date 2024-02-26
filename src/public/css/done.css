@@ -1,0 +1,23 @@
+.reservation-complete {
+    width: 450px;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-link {
+    background-color: #3257fa;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}

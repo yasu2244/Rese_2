@@ -26,13 +26,13 @@
             </div>
             <ul class="slide-menu">
                 @guest
-                    <li><a href="">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="{{ route('register')}}">Registration</a></li>
-                    <li><a href="">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                 @else
-                    <li><a href="">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-                    <li><a href="">Mypage</a></li>
+                    <li><a href="/mypage">Mypage</a></li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -52,88 +52,49 @@
         </header>
         
         <div class="search-form">
-            <!-- 検索フォーム -->
-            <div class="search-form__item">
-                <input type="text" class="area" placeholder="エリア検索">
-                <input type="text" class="genre" placeholder="ジャンル検索">
-                <input type="text" class="name" placeholder="店名検索">
-            </div>
+            <form action="/" method="GET" class="search-form">
+                <div class="search-form__outer-frame">
+                    <select name="area" class="area">
+                        <option value="">All area</option>
+                        @foreach ($areas as $area)
+                            <option value="{{ $area }}">{{ $area }}</option>
+                        @endforeach
+                    </select>
+                    <select name="genre" class="genre">
+                        <option value="">All genre</option>
+                        @foreach ($genres as $genre)
+                            <option value="{{ $genre }}">{{ $genre }}</option>
+                        @endforeach
+                    </select>
+                    <div class="search-icon" onclick="document.getElementById('searchInput').focus()">
+                        <i class="fas fa-search" style="opacity: 0.1;"></i>
+                    </div>
+                    <input type="text" name="name" id="searchInput" class="name" placeholder="Search..." value="{{ request('name') }}" onkeydown="if (event.keyCode === 13) { event.preventDefault(); document.getElementById('searchForm').submit(); }">
+                </div>
+            </form>
         </div>
     </div>
 
         <div class="card-container">
             <!-- 飲食店カード -->
+            @foreach ($restaurants as $restaurant)
             <div class="restaurant-card">
-                <img src="" alt="Restaurant Image">
+                <img class="restaurant-image" src="{{ $restaurant->image }}" alt="{{ $restaurant->name }} Image">
                 <div class="card-body">
-                    <h5 class="card-title">飲食店名</h5>
-                    <p class="card-text">都道府県名 | ジャンル</p>
-                    <a href="/detail/{shop_id}" class="btn btn-primary">詳しく見る</a>
-                    <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
+                    <h3 class="card-title">{{ $restaurant->name }}</h3>
+                    <div class="card-text-container">
+                        <p class="card-text">#{{ $restaurant->region }}</p>
+                        <p class="card-text">#{{ $restaurant->genre }}</p>
+                    </div>
+                    <div class="btn-container">
+                        <a href="/detail/{{ $restaurant->id }}" class="btn btn-detail">詳しく見る</a>
+                        <button class="favorite-btn">
+                            <i class="fas fa-heart heart-icon"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-
-        <div class="restaurant-card">
-            <img src="" alt="Restaurant Image">
-            <div class="card-body">
-                <h5 class="card-title">飲食店名</h5>
-                <p class="card-text">都道府県名 | ジャンル</p>
-                <a href="#" class="btn btn-primary">詳しく見る</a>
-                <!-- お気に入りボタン -->
-                <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
-            </div>
-        </div>
-
-
-
-        <div class="restaurant-card">
-            <img src="" alt="Restaurant Image">
-            <div class="card-body">
-                <h5 class="card-title">飲食店名</h5>
-                <p class="card-text">都道府県名 | ジャンル</p>
-                <a href="#" class="btn btn-primary">詳しく見る</a>
-                <!-- お気に入りボタン -->
-                <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
-            </div>
-        </div>
-
-
-
-        <div class="restaurant-card">
-            <img src="" alt="Restaurant Image">
-            <div class="card-body">
-                <h5 class="card-title">飲食店名</h5>
-                <p class="card-text">都道府県名 | ジャンル</p>
-                <a href="#" class="btn btn-primary">詳しく見る</a>
-                <!-- お気に入りボタン -->
-                <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
-            </div>
-        </div>
-
-        <div class="restaurant-card">
-            <img src="" alt="Restaurant Image">
-            <div class="card-body">
-                <h5 class="card-title">飲食店名</h5>
-                <p class="card-text">都道府県名 | ジャンル</p>
-                <a href="#" class="btn btn-primary">詳しく見る</a>
-                <!-- お気に入りボタン -->
-                <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
-            </div>
-        </div>
-
-        <div class="restaurant-card">
-            <img src="" alt="Restaurant Image">
-            <div class="card-body">
-                <h5 class="card-title">飲食店名</h5>
-                <p class="card-text">都道府県名 | ジャンル</p>
-                <a href="#" class="btn btn-primary">詳しく見る</a>
-                <!-- お気に入りボタン -->
-                <button class="btn btn-outline-danger favorite-btn"><i class="fas fa-heart"></i></button>
-            </div>
-        </div>
-    </div>
-
-
+            @endforeach
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -142,6 +103,7 @@
         document.querySelectorAll('.favorite-btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 btn.classList.toggle('active');
+                this.classList.toggle('clicked');
             });
         });
     </script>

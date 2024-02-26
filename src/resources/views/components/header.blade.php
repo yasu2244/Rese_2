@@ -13,11 +13,11 @@
     @guest
         <li><a href="/">Home</a></li>
         <li><a href="{{ route('register')}}">Registration</a></li>
-        <li><a href="">Login</a></li>
+        <li><a href="/login">Login</a></li>
     @else
         <li><a href="/">Home</a></li>
         <li><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-        <li><a href="">Mypage</a></li>
+        <li><a href="/mypage">Mypage</a></li>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>

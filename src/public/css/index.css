@@ -9,24 +9,45 @@
     margin-right: 10px;
 }
 
-.search-form__item {
+.search-form__outer-frame {
     display: flex;
     justify-content: flex-start;
-    padding: 20px 0px;
     align-items: center;
+    padding: 20px 0px;
     width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow: 2px 2px 2px gray;
 }
 
 .area {
     width: 20%;
+    padding-left: 10px;
+    border: none;
+    height: 25px;
+    border-right: 1px solid #ccc;
 }
 
 .genre {
     width: 20%;
+    padding-left: 10px;
+    border: none;
+    height: 25px;
+    border-right: 1px solid #ccc;
 }
 
 .name {
     width: 60%;
+    padding-right: 30px;
+    border: none;
+    height: 25px;
+}
+
+.search-icon {
+    background-color: #fff;
+    padding: 0.5px 10px;
 }
 
 /* 飲食店カードの配置 */
@@ -44,4 +65,58 @@
     border-radius: 5px;
     box-shadow: 2px 2px 2px gray;
     background-color: #fff;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body h3 {
+    margin: 0 5px;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: 60%;
+}
+
+.card-text-container {
+    display: flex;
+    font-size: 11px;
+}
+
+.card-text {
+    margin: 0 5px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-detail {
+    background-color: #3257fa;
+    color: white;
+    margin-right: 10px;
+    padding: 5px 13px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.favorite-btn {
+    background-color: #fff;
+    margin-left: auto;
+    border: none;
+}
+
+.heart-icon {
+    color: rgb(128, 128, 128);
+    font-size: 24px;
+}
+
+.favorite-btn.clicked .heart-icon {
+    color: red;
 }
