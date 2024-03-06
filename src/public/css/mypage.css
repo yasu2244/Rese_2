@@ -1,0 +1,131 @@
+.reservation-section {
+    float: left;
+    width: 40%;
+    margin-top: 75px;
+}
+
+.reservation-card {
+    width: 75%;
+    background-color: #385dff;
+    padding: 20px;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.reservation-card__header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.clock-icon {
+    margin-right: 10px;
+}
+
+.delete-button {
+    border: 2px solid #fff;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.reservation-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.info-value {
+    flex: 1;
+}
+
+.user-favorites-section {
+    float: right;
+    width: 60%;
+    padding: 20px;
+}
+
+.favorite-cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.restaurant-card {
+    height: 314px;
+    width: 314px;
+    margin: 0 50px 15px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    background-color: #fff;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body h3 {
+    margin: 0 5px;
+}
+
+.restaurant-image {
+    width: 100%;
+    height: 60%;
+    border-radius: 5px 5px 0 0;
+}
+
+.card-text-container {
+    display: flex;
+    font-size: 11px;
+}
+
+.card-text {
+    margin: 0 5px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-detail {
+    background-color: #3257fa;
+    color: white;
+    margin-right: 10px;
+    padding: 5px 13px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.favorite-btn {
+    background-color: #fff;
+    margin-left: auto;
+    border: none;
+}
+
+.heart-icon {
+    color: rgb(128, 128, 128);
+    font-size: 24px;
+}
+
+.favorite-btn.clicked .heart-icon {
+    color: red;
+}

@@ -1,0 +1,68 @@
+.flash_message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.login-container {
+    width: 400px;
+    margin: 100px auto 0;
+}
+
+.login-body {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.login-body__main {
+    background-color: #3257fa;
+    padding: 3px;
+    border-radius: 5px 5px 0 0;
+}
+
+.main-ttl {
+    color: #fff;
+    font-size: 13px;
+    padding: 5px;
+}
+
+.login-form {
+    padding: 15px;
+}
+
+.input-form {
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.input-form input {
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    padding: 5px;
+    width: 90%;
+}
+
+.submit-btn {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.submit-btn input {
+    background-color: #3257fa;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 13px;
+    font-size: 12px;
+    border: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
