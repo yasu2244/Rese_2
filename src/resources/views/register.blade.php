@@ -5,6 +5,12 @@
 @endsection
 
 @section('main')
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
+
 <div class="regiser-container">
   <div class="register-body">
     <div class="register-body__main">
@@ -16,26 +22,26 @@
         <div class="input-form">
           <span><i class="fas fa-user"></i></span>
           <input type="text" placeholder="Username" name="name" value="{{ old('name') }}">
-          @error('name')
-          <p>{{ $message }}</p>
-          @enderror
         </div>
+        @error('name')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
         <div class="input-form">
           <span><i class="fas fa-envelope"></i></span>
           <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
-          @error('email')
-          <p>{{ $message }}</p>
-          @enderror
         </div>
+        @error('email')
+          <div class="error-message">{{ $message }}</div>
+        @enderror
         <div class="input-form">
           <span><i class="fas fa-lock"></i></span>
           <input type="password" placeholder="Password" name="password">
-          @error('password')
-          <p>{{ $message }}</p>
-          @enderror
         </div>
+        @error('password')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
         <div class="submit-btn">
-          <input type="submit" value="登録" onclick="location.href='/thanks'">
+          <input type="submit" value="登録">
         </div>
       </form>
     </div>

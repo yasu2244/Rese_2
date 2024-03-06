@@ -16,11 +16,8 @@
         <li><a href="/login">Login</a></li>
     @else
         <li><a href="/">Home</a></li>
-        <li><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+        <li class="header-nav-item"><a href="/logout">Logout</a></li>
         <li><a href="/mypage">Mypage</a></li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
     @endguest
   </ul>  
 
@@ -29,7 +26,6 @@
   <script>
     // ハンバーガーメニューのアイコンをクリックした時の処理
     document.querySelector('.hamburger').addEventListener('click', function() {
-      // ハンバーガーメニューアイコンのクラスを切り替えて、×アイコンに変化させる
       this.classList.toggle('active');
       document.querySelector('.slide-menu').classList.toggle('active');
     });

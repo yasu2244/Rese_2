@@ -1,3 +1,11 @@
+.flash_message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
 .login-container {
     width: 400px;
     margin: 100px auto 0;
@@ -50,4 +58,11 @@
     border-radius: 5px;
     padding: 5px 13px;
     font-size: 12px;
+    border: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }

@@ -17,7 +17,9 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('restaurant_id')->constrained('restaurants');
-            $table->timestamp('reservation_data');
+            $table->date('reservation_date');
+            $table->time('reservation_time');
+            $table->unsignedInteger('reservation_number');
             $table->timestamps();
         });
     }

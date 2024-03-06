@@ -5,6 +5,11 @@
 @endsection
 
 @section('main')
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
 <div class="login-container">
   <div class="login-body">
     <div class="login-body__main">
@@ -16,19 +21,19 @@
         <div class="input-form">
           <span><i class="fas fa-envelope"></i></span>
           <input type="email" placeholder="Email" name="email" value="{{ old('email') }}">
-          @error('email')
-          <p>{{ $message }}</p>
-          @enderror
         </div>
+          @error('email')
+          <p class="error-message">{{ $message }}</p>
+          @enderror
         <div class="input-form">
           <span><i class="fas fa-lock"></i></span>
           <input type="password" placeholder="Password" name="password">
-          @error('password')
-          <p>{{ $message }}</p>
-          @enderror
         </div>
+          @error('password')
+          <p class="error-message">{{ $message }}</p>
+          @enderror
         <div class="submit-btn">
-          <input type="submit" value="ログイン" onclick="location.href='/login'">
+          <input type="submit" value="ログイン">
         </div>
       </form>
     </div>

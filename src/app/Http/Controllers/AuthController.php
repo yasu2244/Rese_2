@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -11,24 +15,21 @@ class AuthController extends Controller
         return view('register');
     }
 
-     public function postRegister(Request $request)
+    public function postRegister(RegisterRequest $request)
     {
-        //仮
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $validator = $request->validated();
+    
+        try {
+            User::create([
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+            ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        return redirect()->route('thanks');
+            return redirect()->route('thanks');
+        } catch (\Throwable $th) {
+            return redirect('register')->with('result', 'エラーが発生しました');
+        }
     }
 
     public function getLogin()
@@ -38,7 +39,6 @@ class AuthController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-        //仮
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
             return redirect('/');
         } else {
@@ -48,7 +48,6 @@ class AuthController extends Controller
 
     public function getLogout()
     {
-        //仮
         Auth::logout();
         return redirect("login");
     }

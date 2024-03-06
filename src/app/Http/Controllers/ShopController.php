@@ -8,15 +8,28 @@ use Illuminate\Support\Facades\Session;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // エリアの一覧を取得
+        $query = Restaurant::query();
+
+        if ($request->filled('area')) {
+            $query->where('region', $request->area);
+        }
+
+        if ($request->filled('genre')) {
+            $query->where('genre', $request->genre);
+        }
+
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        $restaurants = $query->get();
+
         $areas = Restaurant::select('region')->distinct()->pluck('region');
 
-        // ジャンルの一覧を取得
         $genres = Restaurant::select('genre')->distinct()->pluck('genre');
 
-        $restaurants = Restaurant::all();
         return view('index', [
             'restaurants' => $restaurants,
             'areas' => $areas,
@@ -24,11 +37,10 @@ class ShopController extends Controller
         ]);
     }
 
-
     public function detail($id)
     {
         Session::put('previousUrl', url()->previous());
-
+        
         $restaurant = Restaurant::findOrFail($id);
         return view('detail', ['restaurant' => $restaurant]);
     }
