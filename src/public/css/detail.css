@@ -87,6 +87,20 @@
     font-size: 16px;
 }
 
+.datepicker-container {
+    position: relative;
+    display: inline-block;
+}
+
+.date-form {
+    padding-right: 40px;
+    background-image: url('https://jqueryui.com/resources/demos/datepicker/images/calendar.gif');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    cursor: pointer;
+    caret-color: transparent;
+}
+
 .time-form {
     width: 100%;
     padding: 5px;
