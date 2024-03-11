@@ -32,12 +32,12 @@
             <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
             <div class="reservation-form__group">
                 <label for="date"></label>
-                <input class="date-form" type="date" id="date" name="reservation_date" required>
+                <input class="date-form" type="text" id="date" name="reservation_date" value="日付を選択してください" required>
             </div>
             <div class="reservation-form__group">
                 <label for="time"></label>
                 <select class="time-form" id="time" name="reservation_time" required>
-                    <option value="">選択してください</option>
+                    <option value="">時間を選択してください</option>
                      <?php
                        $currentTime = \Carbon\Carbon::now();
                         for ($hour = 0; $hour < 24; $hour++) {
@@ -54,7 +54,7 @@
             <div class="reservation-form__group">
                 <label for="number"></label>
                 <select class="number-form" id="number" name="reservation_number" required>
-                    <option value="">選択してください</option>
+                    <option value="">人数を選択してください</option>
                     @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
@@ -71,11 +71,23 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#date').datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(dateText) {
+                $('#selected-date').text(dateText);
+            }
+        });
+    });
+</script>
 <script>
     const form = document.querySelector('.reservation-form__body');
 
     form.addEventListener('change', () => {
-        // 日付、時間、人数の要素を取得
+
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
         const number = document.getElementById('number').value;
