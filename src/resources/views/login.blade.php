@@ -5,11 +5,7 @@
 @endsection
 
 @section('main')
-@if (session('result'))
-<div class="flash_message">
-  {{ session('result') }}
-</div>
-@endif
+
 <div class="login-container">
   <div class="login-body">
     <div class="login-body__main">

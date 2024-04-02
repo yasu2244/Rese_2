@@ -6,16 +6,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Favorite;
 
-use Illuminate\Support\Facades\Log;  //あとで消す
-
 class FavoriteController extends Controller
 {
     public function addFavorite(Request $request)
     {
-
         $user = auth()->user();
         $restaurantId = $request->input('restaurant_id');
-        Log::info('addFavorite メソッドが呼び出されました。');  //後で消す
         
         $favorite = new Favorite();
         $favorite->user_id = $user->id;
@@ -31,7 +27,6 @@ class FavoriteController extends Controller
     {
         $user = auth()->user();
         $restaurantId = $request->input('restaurant_id');
-        Log::info('removeFavorite メソッドが呼び出されました。'); //後で消す
         
         Favorite::where('user_id', $user->id)
             ->where('restaurant_id', $restaurantId)

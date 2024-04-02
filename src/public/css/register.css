@@ -1,20 +1,17 @@
-.flash_message {
-    background-color: #ffcccc;
-    color: #cc0000;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
 .regiser-container {
-    width: 400px;
+    width: 100%;
     margin: 100px auto 0;
+    display: flex;
+    justify-content: center;
 }
 
 .register-body {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 2px 2px 2px gray;
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto;/
 }
 
 .register-body__main {

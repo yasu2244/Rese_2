@@ -1,8 +1,8 @@
 .reservation-complete {
-    width: 450px;
-    height: 300px;
-    padding: 20px;
-    margin: 0 auto;
+    max-width: 400px;
+    width: 90%;
+    padding: 100px 20px;
+    margin: 50px auto;
     text-align: center;
     background-color: #fff;
     border-radius: 5px;
@@ -13,6 +13,10 @@
     align-items: center;
 }
 
+.h2 {
+    margin-top: 40px;
+}
+
 .back-link {
     background-color: #3257fa;
     color: #fff;
@@ -20,5 +24,11 @@
     border-radius: 5px;
     text-decoration: none;
     margin-top: 10px;
-    border: none;
+    display: inline-block;
+}
+
+@media screen and (max-width: 768px) {
+    .reservation-complete {
+        font-size: 10px;
+    }
 }

@@ -18,6 +18,18 @@
     @component('components.header')
     @endcomponent
     <main class="main">
+        @if(session('error'))
+            <div class="message_error">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="message_success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @yield('main')
     </main>
     @yield('scripts')
