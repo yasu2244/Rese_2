@@ -5,6 +5,17 @@
 @endsection
 
 @section('main')
+@if(session('error'))
+    <div class="message_error">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if(session('success'))
+    <div class="message_success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="mypage-container">
     <div class="reservation-section">
@@ -34,6 +45,14 @@
                     <span class="info-label">Number</span>
                     <span>{{ $reservation->reservation_number }}人</span>            
                 </div>
+                <div class="reservation-change">
+                    <form method="GET" action="{{ route('reservation.change', ['reservation_id' => $reservation->id, 'restaurant_id' => $reservation->restaurant_id]) }}">
+                        @csrf
+                        <button type="submit" class="edit-button">
+                            <i class="fas fa-pencil-alt"></i> 予約変更
+                        </button>
+                    </form>
+                </div>
             </div>
         @endforeach
     </div>
@@ -62,7 +81,10 @@
     </script>   
 
     <div class="user-favorites-section">
-        <h2>{{ $userName }}さん</h2>
+        <div class="user-info">
+            <h2>{{ $userName }}さん</h2>
+            <a href="{{ route('review.posts') }}" class="list-btn">投稿したレビュー</a>
+        </div>
         <h3>お気に入り店舗</h3>
         <div class="favorite-cards">
             @foreach ($favoriteRestaurants as $favorite)
@@ -75,7 +97,7 @@
                             <p class="card-text">#{{ $favorite->restaurant->genre }}</p>
                         </div>
                         <div class="btn-container">
-                            <a href="/detail/{{ $favorite->restaurant->id }}" class="btn btn-detail">詳しく見る</a>
+                            <a href="/detail/{{ $favorite->restaurant->id }}" class="btn btn-detail" onclick="setReferringPage('mypage');">詳しく見る</a>
                             @auth
                                 <form id="remove-favorite-form-{{ $favorite->restaurant->id }}" action="/favorite/remove" method="POST" style="display: none;">
                                     @csrf
@@ -92,7 +114,14 @@
         </div>
     </div>
 </div>
+<script> //「詳しく見る」
+function setReferringPage(page) {
+    sessionStorage.setItem('referringPage', page);
+}
+</script>
+
 @endsection
+
 @section('scripts')
     <script src="{{ asset('js/favorite-script.js') }}"></script>
 @endsection

@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 80%;
 }
 
 .back-button {
@@ -42,6 +43,21 @@
     display: block;
 }
 
+.rate-button {
+    font-size: 15px;
+    padding: 8px 15px;
+    background-color: #3257fa;
+    color: #FFF;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    text-decoration: none;
+    margin-left: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
 .shop-tags {
     display: inline-block;
 }
@@ -54,6 +70,7 @@
 .shop-description {
     width: 80%;
     font-size: 16px;
+    margin-bottom: 80px;
 }
 
 .reservation-form {
@@ -62,7 +79,7 @@
     border-radius: 5px;
     position: relative;
     top: -60px;
-
+    margin-right: 20px;
 }
 
 .reservation-header {
@@ -99,6 +116,7 @@
     background-position: right 10px center;
     cursor: pointer;
     caret-color: transparent;
+    font-size: 14px;
 }
 
 .time-form {
@@ -107,7 +125,7 @@
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .number-form {
@@ -115,12 +133,12 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .reservation-details {
     background-color: rgb(100, 149, 237, 1);
-    margin: 20px 40px;
+    margin: 20px 40px 70px;
     padding: 20px;
     border-radius: 5px;
     color: #fff;
@@ -155,4 +173,72 @@
 
 .reserve-button:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+
+    .shop-detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .info {
+        padding: 20px;
+    }
+
+    .reservation-form {
+        background-color: #3257fa;
+        border-radius: 5px;
+
+        margin-top: 20px;
+        color: #fff;
+        box-sizing: border-box;
+    }
+
+    .reservation-header {
+        margin-bottom: 20px;
+    }
+
+    .reservation-form__group {
+        margin-bottom: 15px;
+    }
+
+    .date-form,
+    .time-form,
+    .number-form {
+        width: 100%;
+        padding: 10px;
+        font-size: 9px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .reservation-details {
+        margin-top: 20px;
+        padding: 10px;
+    }
+
+    .reservation-details p {
+        margin: 10px 0;
+        font-size: 10px;
+    }
+
+    .reserve-button {
+        margin-top: 20px;
+    }
+
+}
+
+@media (max-width: 425px) {
+    .info-header {
+        flex-wrap: wrap;
+        /* 評価ボタンが改行されるように */
+    }
+
+    .rate-button {
+        margin: 5px 0;
+        width: 100%;
+        font-size: 11px;
+    }
 }

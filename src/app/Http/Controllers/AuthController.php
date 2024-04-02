@@ -40,15 +40,15 @@ class AuthController extends Controller
     public function postLogin(LoginRequest $request)
     {
         if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
-            return redirect('/');
+            return redirect('/')->with('success', 'ログインに成功しました');
         } else {
-            return redirect('login')->with('result', 'メールアドレスまたはパスワードが間違っております');
+            return redirect('login')->with('error', 'メールアドレスまたはパスワードが間違っています');
         }
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return redirect("login");
+        return redirect("login")->with('success', 'ログアウトしました');
     }
 }

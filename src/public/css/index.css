@@ -1,12 +1,9 @@
-.grid {
-    display: grid;
-    grid-template-rows: 100px;
-    grid-template-columns: 50% 1fr;
-}
-
 .search-form {
-    height: 65px;
-    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0;
+    width: 70%;
 }
 
 .search-form__outer-frame {
@@ -99,7 +96,7 @@
 
 .btn-detail {
     background-color: #3257fa;
-    color: white;
+    color: #FFF;
     margin-right: 10px;
     padding: 5px 13px;
     text-decoration: none;
@@ -122,22 +119,13 @@
     color: red;
 }
 
-.alert {
-    position: relative;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-}
+@media (max-width: 768px) {
+    .header {
+        flex-wrap: wrap;
+    }
 
-.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-}
-
-.alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
+    .search-form {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }

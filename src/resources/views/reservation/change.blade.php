@@ -1,37 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/change.css') }}">
 @endsection
 
 @section('main')
-<div class="shop-detail">
-    <div class="info">
-        <div class="info-header">
-            <button class="back-button" onclick="goBack();">
-                <i class="fas fa-angle-left"></i>
-            </button>
-            <h2 class="shop-name">{{ $restaurant->name }}</h2>
-            @auth
-                <a href="{{ route('review.create', ['restaurant_id' => $restaurant->id]) }}" class="rate-button">レビューする</a>
-            @endauth
-        </div>
-        <div class="info-container">
-            <img class="shop-image" src="{{ $restaurant->image }}" alt="{{ $restaurant->name }} Image">
-            <div class="shop-tags">
-                <p class="shop-tag">#{{ $restaurant->region }}</p>
-                <p class="shop-tag">#{{ $restaurant->genre }}</p>
-            </div>
-        </div>
-            <p class="shop-description">{{ $restaurant->description }}</p>
-    </div>
 
-    <!-- 予約フォーム -->
-    <div class="reservation-form">
+<div class="reservation-form">
         <div class="reservation-header">
-            <h3>予約</h3>
+            <h3>予約変更</h3>
         </div>
-        <form action="{{ route('reservation.confirm') }}" method="POST" class="reservation-form__body">
+        <form action="{{ route('reservation.change.submit', ['reservation_id' => $reservation->id]) }}" method="POST" class="reservation-form__body">
             @csrf
             <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
             <div class="reservation-form__group">
@@ -70,29 +49,11 @@
                 <p>Time<span id="selected-time"></span></p>
                 <p>Number<span id="selected-number"></span></p>
             </div>
-            <button type="submit" class="reserve-button">予約する</button>
+            <button type="submit" class="reserve-button">予約変更する</button>
         </form>
     </div>
-</div>
 
-<script>
-// 戻るボタンのクリックイベントを処理する関数
-function goBack() {
-    // 直前のURLを取得
-    var previousUrl = "{{ Session::get('previousUrl') }}";
-    
-    // 直前のURLが存在し、かつ予約完了ページまたはレビュー投稿ページである場合
-    if (previousUrl && (previousUrl.includes('reservation/done') || previousUrl.includes('review/restaurant_id'))) {
-        // 直前のページが予約完了ページまたはレビュー投稿ページの場合、ブラウザの履歴を2つ戻る
-        window.history.go(-3); // 予約完了ページまたはレビュー投稿ページ→直前のページの前に戻る
-    } else {
-        // 直前のページが予約完了ページまたはレビュー投稿ページでない場合、通常の戻る操作を行う
-        window.history.back();
-    }
-}
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script> //日付選択
     $(document).ready(function() {
@@ -119,4 +80,3 @@ function goBack() {
     });
 </script>
 @endsection
-

@@ -23,6 +23,7 @@ class UserController extends Controller
         return view('mypage', compact('favoriteRestaurants', 'userName', 'reservations'));
     }
 
+    //reservationへ移す?
     public function deleteReservation(Request $request)
     {
         $reservationId = $request->input('reservation_id');
