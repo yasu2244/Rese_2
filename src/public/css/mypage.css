@@ -11,6 +11,7 @@
     color: #fff;
     border-radius: 5px;
     margin-bottom: 20px;
+    margin: 0 auto;
 }
 
 .reservation-card__header {
@@ -76,11 +77,10 @@
 
 .user-info {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 85%;
 }
-
-
 
 .list-btn {
     font-size: 15px;
@@ -214,6 +214,12 @@
         width: 80px;
     }
 
+    .list-btn {
+        flex-wrap: wrap;
+    }
+
+
+
     .favorite-cards {
         margin-top: 20px;
     }
@@ -221,10 +227,16 @@
     .restaurant-card {
         width: calc(50% - 30px);
         margin: 0 15px 15px 15px;
-        width: 100%;
     }
 
     .restaurant-image {
         height: 50%;
+    }
+}
+
+@media (max-width: 425px) {
+
+    .restaurant-card {
+        width: 100%;
     }
 }
