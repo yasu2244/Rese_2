@@ -17,53 +17,32 @@
     @livewireStyles
 </head>
 <body class="container">
-
     <header class="header">
-    <div class="header-area">
-        <div class="hamburger">
-            <!-- ハンバーガーメニューの線 -->
-            <span></span>
-            <span></span>
-            <span></span>
-            <!-- /ハンバーガーメニューの線 -->
-        </div>
-        <h1 class="header-ttl">Rese</h1>
-    </div>
-    <ul class="slide-menu">
-        @guest
-            <li><a href="/">Home</a></li>
-            <li><a href="{{ route('register')}}">Registration</a></li>
-            <li><a href="/login">Login</a></li>
-        @else
-            <li><a href="/">Home</a></li>
-            <li class="header-nav-item"><a href="/logout">Logout</a></li>
-            <li><a href="/mypage">Mypage</a></li>
-        @endguest
-    </ul>
-
-    <div class="search-form">
-        <form action="/" method="GET" class="search-form" id="searchForm">
-            <div class="search-form__outer-frame">
-                <livewire:search />
-                @livewireScripts
+        <div class="header-area">
+            <div class="hamburger">
+                <!-- ハンバーガーメニューの線 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <!-- /ハンバーガーメニューの線 -->
             </div>
-        </form>
-    </div>
-</header>
+            <h1 class="header-ttl">Rese</h1>
+        </div>
+        <ul class="slide-menu">
+            @guest
+                <li><a href="/">Home</a></li>
+                <li><a href="{{ route('register')}}">Registration</a></li>
+                <li><a href="/login">Login</a></li>
+            @else
+                <li><a href="/">Home</a></li>
+                <li class="header-nav-item"><a href="/logout">Logout</a></li>
+                <li><a href="/mypage">Mypage</a></li>
+            @endguest
+        </ul>
+    </header>
 
-@if(session('message_error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
-@if(session('success'))
-    <div class="message_success">
-        {{ session('success') }}
-    </div>
-@endif
-
-<livewire:restaurant-list />
+    <livewire:search />
+    @livewireScripts
     
 </body>
 </html>        

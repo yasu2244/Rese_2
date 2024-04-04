@@ -64,4 +64,3 @@ class ReviewController extends Controller
         return redirect()->route('review.posts')->with('success', 'レビューが削除されました。');
     }
 }
-

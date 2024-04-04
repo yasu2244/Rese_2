@@ -6,15 +6,13 @@
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
+    display: inline-block;
     align-items: center;
+    width: 35%;
 }
 
 .header-area {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    margin-left: 20px;
 }
 
 .hamburger {

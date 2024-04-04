@@ -47,8 +47,3 @@ Route::get('/thanks', function () {
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin']);
-
-Route::get('/index', function () {
-    return view('index');
-});
-
