@@ -87,19 +87,23 @@
     padding: 0px;
     font-weight: bold;
     font-size: 11px;
-    width: 55%;
+    width: 100%;
+    align-items: center;
+}
+
+.rate-wrap {
+    display: flex;
     align-items: center;
 }
 
 .rate {
     position: relative;
     display: inline-block;
-    margin: 0 auto;
-    width: 80%;
+    margin: 0 5px;
+    width: 55px;
     /* 星5個の幅 */
     height: 20px;
-    /* 星1個の幅 */
-
+    /* 星1個の高さ */
 }
 
 .rate::before,
@@ -121,11 +125,7 @@
     width: var(--width);
     /* 平均評価に応じて動的に変化する幅 */
     color: #ffb906;
-}
-
-.num {
-    width: 20%;
-    margin-right: 5px;
+    /* 評価の星、色はゴールド */
 }
 
 .info-container_tag {
