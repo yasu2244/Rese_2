@@ -43,6 +43,8 @@ class Search extends Component
             ->groupBy('restaurant_id')
             ->get();
 
+           
+
         return view('livewire.search', [
             'restaurants' => $restaurants,
             'averageRatings' => $averageRatings,

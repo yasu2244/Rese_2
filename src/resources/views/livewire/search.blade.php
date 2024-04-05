@@ -41,9 +41,11 @@
                         <div class="restaurant-rating">
                             <?php $foundRating = false; ?>
                             @foreach ($averageRatings as $averageRating)
-                                    @if ($averageRating->restaurant_id == $restaurant->id)                         
-                                <span class="num">評価: </span>
-                                <span class="rate" style="--width: {{ ($averageRating->average_rating / 5) * 100 }}%;"></span>
+                                @if ($averageRating->restaurant_id == $restaurant->id)
+                                <span class="rate-wrap">評価:{{ number_format($averageRating->average_rating, 1) }}
+                                    <span class="rate" style="--width: {{ ($averageRating->average_rating / 5) * 55 }}px;"></span>
+                                    <!-- (受け取った値/5)×星の幅 -->
+                                </span>
                                 <?php $foundRating = true; ?>
                                 @break
                             @endif
