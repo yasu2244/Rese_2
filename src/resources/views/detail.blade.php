@@ -80,14 +80,26 @@
 function goBack() {
     // 直前のURLを取得
     var previousUrl = "{{ Session::get('previousUrl') }}";
+    var currentRestaurantId = "{{ $restaurant->id }}";
     
     // 直前のURLが存在し、かつ予約完了ページまたはレビュー投稿ページである場合
-    if (previousUrl && (previousUrl.includes('reservation/done') || previousUrl.includes('review/restaurant_id'))) {
-        // 直前のページが予約完了ページまたはレビュー投稿ページの場合、ブラウザの履歴を2つ戻る
-        window.history.go(-3); // 予約完了ページまたはレビュー投稿ページ→直前のページの前に戻る
-    } else {
-        // 直前のページが予約完了ページまたはレビュー投稿ページでない場合、通常の戻る操作を行う
-        window.history.back();
+   if (previousUrl) {
+        if (previousUrl.includes('reservation/done')) {
+            // 直前のページが予約完了ページの場合、ブラウザの履歴を3つ戻る
+            window.history.go(-3);
+            return;
+        } else if (previousUrl.includes('review/')) {
+            // 直前のページがレビュー投稿ページの場合、restaurant_idを抽出して比較
+            var match = previousUrl.match(/review\/(\d+)/);
+            if (match) {
+                var previousRestaurantId = match[1];
+                if (previousRestaurantId == currentRestaurantId) {
+                    // restaurant_idが一致した場合、ブラウザの履歴を3つ戻る
+                    window.history.go(-3);
+                    return;
+                }
+            }
+        }
     }
 }
 </script>
