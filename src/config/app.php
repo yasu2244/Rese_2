@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Livewire\LivewireServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*

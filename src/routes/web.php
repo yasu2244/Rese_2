@@ -7,6 +7,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\ManagerLoginController;
+use App\Http\Controllers\Admin\CreateRestaurantController;
 use App\Http\Middleware\CheckReservationDone;
 
 
@@ -47,3 +52,27 @@ Route::get('/thanks', function () {
 
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'postLogin']);
+
+//管理者・店舗代表者用
+Route::get('/admin/register', [RegisterController::class, 'showRegistrationForm'])->name('admin.register');
+Route::post('/admin/register', [RegisterController::class, 'register']);
+
+Route::get('/admin/login', [AdminAuthController::class, 'getLogin'])->name('admin.login');
+Route::post('/admin/login', [AdminAuthController::class, 'postLogin'])->name('admin.login.post');
+
+Route::get('manager/login', [ManagerLoginController::class, 'getLogin'])->name('manager/login');
+Route::post('manager/login', [ManagerLoginController::class,'postLogin'])->name('manager.login.post');
+
+//管理者用ページ
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/shop-list', [AdminController::class, 'index'])->name('admin.shop-list');
+});
+
+//店舗代表者ページ
+// Route::middleware(['manager'])->group(function () {
+//     Route::get('', [ManagerLoginController::class, 'index'])->name('');
+// });
+
+Route::get('/admin/create-restaurant', [CreateRestaurantController::class, 'showCreateForm'])->name('restaurants.create');
+
+Route::post('/admin/create-restaurant', [CreateRestaurantController::class, 'store'])->name('restaurants.store');

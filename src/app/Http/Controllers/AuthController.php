@@ -17,18 +17,16 @@ class AuthController extends Controller
 
     public function postRegister(RegisterRequest $request)
     {
-        $validator = $request->validated();
-    
         try {
             User::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
             ]);
 
-            return redirect()->route('thanks');
+            return redirect()->route('thanks')->with('success', 'ユーザー登録が完了しました');
         } catch (\Throwable $th) {
-            return redirect('register')->with('result', 'エラーが発生しました');
+            return redirect('register')->with('error', 'エラーが発生しました');
         }
     }
 
@@ -39,10 +37,14 @@ class AuthController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // 認証成功時の処理
             return redirect('/')->with('success', 'ログインに成功しました');
         } else {
-            return redirect('login')->with('error', 'メールアドレスまたはパスワードが間違っています');
+            // 認証失敗時の処理
+            return redirect()->back()->with('error', 'メールアドレスまたはパスワードが間違っています')->withInput($request->only('email'));
         }
     }
 
