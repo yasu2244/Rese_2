@@ -99,7 +99,13 @@ function goBack() {
                     return;
                 }
             }
+        } else {
+            // 上記の条件に一致しない場合、通常の戻る操作を行う
+            window.history.back();
         }
+    } else {
+        // previousUrlが存在しない場合、通常の戻る操作を行う
+        window.history.back();
     }
 }
 </script>
