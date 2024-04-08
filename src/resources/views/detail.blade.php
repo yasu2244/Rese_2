@@ -99,7 +99,11 @@ function goBack() {
                     return;
                 }
             }
+        } else {
+            window.history.back();
         }
+    } else {
+        window.history.back();
     }
 }
 </script>
