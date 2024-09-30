@@ -45,7 +45,14 @@ return [
             'driver' => 'session',
             'provider' => 'admins', // 管理者用のプロバイダー
         ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -70,15 +77,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+       'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\Admin::class, // 管理者用のモデル
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

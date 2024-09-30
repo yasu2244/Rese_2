@@ -1,78 +1,43 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ShopsController;
+use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\Admin\RegisterController;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\ManagerLoginController;
-use App\Http\Controllers\Admin\CreateRestaurantController;
-use App\Http\Middleware\CheckReservationDone;
+use App\Http\Controllers\Admin\ShopController;
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/logout', [AuthController::class,'getLogout'])->name('logout');
-
-    Route::post('/favorite/add', [FavoriteController::class, 'addFavorite'])->name('favorite.add');
-
-    Route::post('/favorite/remove', [FavoriteController::class, 'removeFavorite'])->name('favorite.remove');
-
-    Route::get('/user/favorites', [FavoriteController::class, 'getFavorites']);
-
-    Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
-    Route::delete('/delete-reservation', [UserController::class, 'deleteReservation']);
-
-    Route::post('/reservation/confirm', [ReservationController::class, 'confirmReservation'])->name('reservation.confirm');
-    Route::get('/reservation/{reservation_id}/change', [ReservationController::class, 'showChangeForm'])->name('reservation.change');
-    Route::post('/reservation/change/{reservation_id}', [ReservationController::class, 'changeReservation'])->name('reservation.change.submit');
-    Route::get('reservation/done', [ReservationController::class, 'showDonePage'])->name('reservation.done')->middleware(CheckReservationDone::class);
-
-    Route::get('/review/posts', [ReviewController::class, 'index'])->name('review.posts');
-    Route::get('/review/{restaurant_id}', [ReviewController::class, 'create'])->name('review.create');
-    Route::post('/review/store', [ReviewController::class, 'store'])->name('review.store');
-    Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
-    Route::post('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
-    Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
-});
-
-Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('shop.detail');
-
-Route::get('/register', [AuthController::class,'getRegister'])->name('register');
-Route::post('/register', [AuthController::class,'postRegister']);
-
+Route::get('/', [ShopsController::class, 'index'])->name('root');
+Route::get('/detail/{shop_id}', [ShopsController::class, 'detail'])->name('shop.detail');
+Route::get('/search', [ShopsController::class, 'search'])->name('shop.search');
 Route::get('/thanks', function () {
     return view('thanks');
 })->name('thanks');
 
-Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'postLogin']);
+Route::get('shop/{shop_id}/reviews', [ReviewController::class, 'allReviews'])->name('review.all');
 
-//管理者・店舗代表者用
-Route::get('/admin/register', [RegisterController::class, 'showRegistrationForm'])->name('admin.register');
-Route::post('/admin/register', [RegisterController::class, 'register']);
+Route::middleware('auth')->group(function () {
+    Route::get('/mypage', [UsersController::class, 'mypage'])->name('mypage');
 
-Route::get('/admin/login', [AdminAuthController::class, 'getLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'postLogin'])->name('admin.login.post');
+    Route::post('/like/{shop_id}', [FavoriteController::class, 'create'])->name('like');
+    Route::post('/unlike/{shop_id}', [FavoriteController::class, 'delete'])->name('unlike');
 
-Route::get('manager/login', [ManagerLoginController::class, 'getLogin'])->name('manager/login');
-Route::post('manager/login', [ManagerLoginController::class,'postLogin'])->name('manager.login.post');
+    Route::post('/reservation', [ReservationsController::class, 'create'])->name('reserve.create');
+    Route::delete('/reserve/{reservation_id}', [ReservationsController::class, 'delete'])->name('reserve.delete');
 
-//管理者用ページ
-Route::middleware(['admin'])->group(function () {
-    Route::get('/admin/shop-list', [AdminController::class, 'index'])->name('admin.shop-list');
+    Route::get('/review/posts', [ReviewController::class, 'index'])->name('review.posts');
+    Route::get('/review/{shop_id}/create', [ReviewController::class, 'create'])->name('review.create');
+    Route::post('/review', [ReviewController::class, 'store'])->name('review.store');
+    Route::get('review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
+    Route::delete('review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+    Route::put('/review/{id}', [ReviewController::class, 'update'])->name('review.update'); 
+
 });
 
-//店舗代表者ページ
-// Route::middleware(['manager'])->group(function () {
-//     Route::get('', [ManagerLoginController::class, 'index'])->name('');
-// });
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('admin/store', [ShopController::class, 'store'])->name('admin.store');
+});
 
-Route::get('/admin/create-restaurant', [CreateRestaurantController::class, 'showCreateForm'])->name('restaurants.create');
-
-Route::post('/admin/create-restaurant', [CreateRestaurantController::class, 'store'])->name('restaurants.store');
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

@@ -7,15 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-    protected $fillable = ['user_id', 'restaurant_id', 'reservation_date', 'reservation_time', 'reservation_number'];
+    use HasFactory;
 
-    public function user()
+    protected $fillable = [
+        'date',
+        'time',
+        'user_num',
+        'user_id',
+        'shop_id'
+    ];
+    public static function postReservation($request, $shop_id)
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function restaurant()
-    {
-        return $this->belongsTo(Restaurant::class);
+        $param = [
+            "date" => $request->date,
+            "time" => $request->time,
+            "user_num" => $request->user_num,
+            "user_id" => $request->user_id,
+            "shop_id" => $shop_id,
+        ];
+        $reservation = Reservation::create($param);
+        return $reservation;
     }
 }

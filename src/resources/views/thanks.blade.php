@@ -5,9 +5,11 @@
 @endsection
 
 @section('main')
-<div class="thanks-container">
-    <h2>会員登録ありがとうございます</h2>
-    <a class="transition-link" href="/login">ログインする</a>
+<div class="main">
+  <div class="thanks-card">
+    <p class="thanks-card__txt">会員登録ありがとうございます</p>
+    <a class="thanks-card__link" href="/login">ログインする</a>
+  </div>
 </div>
 
 @endsection

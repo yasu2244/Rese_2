@@ -1,183 +1,234 @@
-.search-form {
-    width: 70%;
-    margin-top: 0;
+/* ホーム */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
     margin-left: auto;
-    margin-bottom: 20px;
 }
 
-.search-form__outer-frame {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px 0px;
-    width: 100%;
-    height: 40px;
+select {
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px gray;
+    color: #333;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    width: 100%;
+    height: 50px;
+    max-width: 600px; 
+    margin-left: auto;
 }
 
-.area {
-    width: 20%;
-    padding-left: 10px;
-    border: none;
-    height: 25px;
-    border-right: 1px solid #ccc;
-}
-
-.genre {
-    width: 20%;
-    padding-left: 10px;
-    border: none;
-    height: 25px;
-    border-right: 1px solid #ccc;
-}
-
-.name {
-    width: 60%;
-    padding-right: 30px;
-    border: none;
-    height: 25px;
-}
-
-.search-icon {
+select:focus {
+    border-color: #007bff;
     background-color: #fff;
-    padding: 0.5px 10px;
+    color: #000;
 }
 
-/* 飲食店カードの配置 */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.restaurant-card {
-    height: 314px;
-    width: 314px;
-    margin: 0 10px 20px 0;
+.search {
+    width: 600px;
+    padding: 10px 5px;
+    background-color: #ffffff;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px gray;
+    box-shadow: 2px 2px 4px gray;
+    margin-left: auto;
+}
+  
+.search__pull-down {
+    border-right: 1px solid #eee;
+}
+
+.search__pull-down select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 7px 30px 7px 10px;
+    height: 30px;
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    background-image: url(../img/triangle.png);
+    background-repeat: no-repeat;
+    background-size: 12px 10px;
+    background-position: right 10px center;
+    line-height: 1.1em;
+    cursor: pointer;
+}
+
+.search__keyword {
+    width: 400px;
+    background-image: url(../img/search.png);
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: auto 60%;
     background-color: #fff;
-}
-
-.restaurant-image {
-    width: 100%;
-    height: 60%;
-    border-radius: 5px 5px 0 0;
-}
-
-.card-body {
-    padding: 15px 15px 0px 15px;
-}
-
-.card-body h3 {
-    margin: 0px;
-}
-
-.info-container {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-}
-
-.restaurant-rating {
-    display: flex;
-    padding: 0px;
-    font-weight: bold;
-    font-size: 11px;
-    width: 100%;
-    align-items: center;
-}
-
-.rate-wrap {
-    display: flex;
-    align-items: center;
-}
-
-.rate {
-    position: relative;
-    display: inline-block;
-    margin: 0 5px;
-    width: 55px;
-    /* 星5個の幅 （星の大きさがあるのでwidthを100pxにしても実質55pxになるので） */
-    height: 20px;
-    /* 星1個の高さ */
-}
-
-.rate::before,
-.rate::after {
-    position: absolute;
-    display: inline-block;
-    height: 20px;
-    content: '★★★★★';
-    line-height: 20px;
-}
-
-.rate::before {
-    color: #c4c4c4;
-    /* 背景の星、色はグレー */
-}
-
-.rate::after {
-    overflow: hidden;
-    width: var(--width);
-    /* 平均評価に応じて動的に変化する幅 */
-    color: #ffb906;
-    /* 評価の星、色はゴールド */
-}
-
-.info-container_tag {
-    display: flex;
-    align-items: center;
-    font-size: 11px;
-    padding: 0px;
-    margin-right: auto;
-}
-
-.card-tag {
-    margin: 0 5px;
-}
-
-.btn-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.btn-detail {
-    background-color: #3257fa;
-    color: #FFF;
-    margin-right: 10px;
-    padding: 5px 13px;
-    text-decoration: none;
-    border-radius: 5px;
+    padding-left: 40px;
+    border: none;
+    outline: 0;
     font-size: 14px;
 }
 
-.favorite-btn {
-    background-color: #fff;
-    margin-left: auto;
+.search__btn {
+    background: #305dff;
+    color: #fff;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60px;
+    text-align: center;
 }
 
-.heart-icon {
-    color: rgb(128, 128, 128);
-    font-size: 24px;
+.shops {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
-.favorite-btn.clicked .heart-icon {
-    color: red;
+.shop-card {
+    width: 300px;
+    height: 280px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px gray;
+    margin-bottom: 2%;
 }
 
-@media (max-width: 768px) {
-    .header {
-        flex-wrap: wrap;
+.shop-card__img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 150px;
+    max-height: 150px;
+    object-fit: cover;
+}
+
+.shop-card__content {
+    padding: 20px;
+}
+
+.shop-card__content__ttl {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.shop-card__content__txt {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.shop-card__content__link {
+    text-decoration: none;
+    background: #305dff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
     }
 
-    .search-form {
+.shop-card__content__icon {
+    cursor: pointer;   
+}
+
+.shop-card__content__icon.active {
+    fill: red;
+}
+
+.shop-card__content__icon.inactive {
+    fill: #eee;
+}
+
+/* タブレットサイズ（768px〜1023px） */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .shops {
+        width: calc(100vw - 150px);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .search {
+        width: 500px;
+    }
+
+    .shop-card {
+        width: 320px;
+        height: 280px;
+    }
+
+    .search__btn {
         width: 100%;
+        font-size: 14px;
+    }
+
+    .header {
+        width: 85%;
+    }
+}
+
+/* スマートフォンサイズ（600px以下） */
+@media (max-width: 600px) {
+    .shops {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .shop-card {
+        width: 90%;
+        margin: 10px 0;
+        height: auto;
+    }
+
+    .shop-card__content {
+        padding: 15px;
+    }
+
+    .shop-card__content__ttl {
+        font-size: 16px;
+    }
+
+    .shop-card__content__txt {
+        font-size: 10px;
+    }
+
+    .shop-card__content__link {
+        padding: 5px 10px;
+    }
+
+    .search {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
+    }
+
+    .search__pull-down select {
+        width: 45%;
+        margin-bottom: 10px;
+    }
+
+    .search__keyword {
+        width: calc(100% - 5px);
+        margin-bottom: 10px;
+    }
+
+    .search__btn {
+        width: 50%;
+        font-size: 10px;
+    }
+
+    .menu {
+        padding-top: 20vh;
+    }
+
+    .menu__item {
+        font-size: 24px;
         margin-bottom: 20px;
     }
 }

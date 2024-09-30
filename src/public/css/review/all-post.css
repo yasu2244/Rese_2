@@ -1,0 +1,48 @@
+.reviews-section h2 {
+    font-size: 2em; /* h2のフォントサイズを大きく */
+    color: #333; /* 色を少し濃く */
+    margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+.review-item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-header {
+    margin-bottom: 10px;
+}
+
+.review-author {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.review-date {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.review-rating .rating-stars {
+    font-size: 1.5em; /* 星のサイズを大きく */
+    color: #305dff; /* 星マークの色を青に */
+    margin-bottom: 10px;
+}
+
+.review-comment .comment-text {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.review-image img {
+    max-width: 100%; /* 幅いっぱいまで拡大 */
+    height: auto;
+    border-radius: 8px; /* 画像に角丸を追加 */
+    margin-top: 10px;
+}
+

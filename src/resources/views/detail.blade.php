@@ -5,134 +5,99 @@
 @endsection
 
 @section('main')
-<div class="shop-detail">
-    <div class="info">
-        <div class="info-header">
-            <button class="back-button" onclick="goBack();">
-                <i class="fas fa-angle-left"></i>
-            </button>
-            <h2 class="shop-name">{{ $restaurant->name }}</h2>
-            @auth
-                <a href="{{ route('review.create', ['restaurant_id' => $restaurant->id]) }}" class="rate-button">レビューする</a>
-            @endauth
-        </div>
-        <div class="info-container">
-            <img class="shop-image" src="{{ $restaurant->image }}" alt="{{ $restaurant->name }} Image">
-            <div class="shop-tags">
-                <p class="shop-tag">#{{ $restaurant->region }}</p>
-                <p class="shop-tag">#{{ $restaurant->genre }}</p>
-            </div>
-        </div>
-            <p class="shop-description">{{ $restaurant->description }}</p>
+<div class="main flex">
+  <div class="shop-detail">
+    <div class="flex align-items-center">
+      <a class="shop-detail__link" href="/">＜</a>
+      <h2 class="shop-detail__ttl">{{$shop->name}}</h2>
     </div>
+    <img class="shop-detail__img" src="{!! $shop->image_url !!}" alt="shop-img" width="100%" />
+    <p class="shop-detail__tag">#{{$shop->area->name}}&nbsp;#{{$shop->genre->name}}</p>
+    <p class="shop-detail__txt">{{$shop->description}}</p>
 
-    <!-- 予約フォーム -->
-    <div class="reservation-form">
-        <div class="reservation-header">
-            <h3>予約</h3>
+    <a href="{{ route('review.all', ['shop_id' => $shop->id]) }}" class="all-reviews-link">全ての口コミ情報</a>
+
+    @auth
+    @if (is_null($userReview))
+        <a href="{{ route('review.create', ['shop_id' => $shop->id]) }}" class="rate-button">口コミを投稿する</a>
+    @else
+        <div class="user-review">
+          <div class="user-review__header">
+            <a href="{{ route('review.edit', ['id' => $userReview->id]) }}" class="edit-button">口コミを編集</a>
+            <form action="{{ route('review.destroy', ['id' => $userReview->id]) }}" method="POST" class="delete-form" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="delete-button" onclick="return confirm('本当に削除しますか？')">口コミを削除</button>
+            </form>
+          </div>
+          <div class="user-review__main">
+              <p class="rating">{{ str_repeat('★', $userReview->rating) }}</p>
+              <p class="comment">{{ $userReview->comment }}</p>
+
+              @if ($userReview->image_path)
+                <div class="review-image">
+                    <img src="{{ asset('storage/' . $userReview->image_path) }}" alt="Review Image" width="200">
+                </div>
+            @endif
+          </div>
         </div>
-        <form action="{{ route('reservation.confirm') }}" method="POST" class="reservation-form__body">
-            @csrf
-            <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-            <div class="reservation-form__group">
-                <label for="date"></label>
-                <input class="date-form" type="text" id="date" name="reservation_date" value="日付を選択してください" required>
-            </div>
-            <div class="reservation-form__group">
-                <label for="time"></label>
-                <select class="time-form" id="time" name="reservation_time" required>
-                    <option value="">時間を選択してください</option>
-                     <?php
-                       $currentTime = \Carbon\Carbon::now();
-                        for ($hour = 0; $hour < 24; $hour++) {
-                            for ($minute = 0; $minute < 60; $minute += 30) {
-                                // 時間を24時間表記の文字列にフォーマット
-                                $time = sprintf('%02d:%02d', $hour, $minute);
-                                
-                                echo "<option value=\"$time\">$time</option>";
-                            }
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="reservation-form__group">
-                <label for="number"></label>
-                <select class="number-form" id="number" name="reservation_number" required>
-                    <option value="">人数を選択してください</option>
-                    @for ($i = 1; $i <= 10; $i++)
-                        <option value="{{ $i }}">{{ $i }}</option>
-                    @endfor
-                </select>
-            </div>
-            <div class="reservation-details">
-                <p>Shop<span id="shop-name">{{ $restaurant->name }}</span></p>
-                <p>Date<span id="selected-date"></span></p>
-                <p>Time<span id="selected-time"></span></p>
-                <p>Number<span id="selected-number"></span></p>
-            </div>
-            <button type="submit" class="reserve-button">予約する</button>
-        </form>
-    </div>
+    @endif
+@endauth
+
+  </div>
+
+  <div class="reservation">
+    <form class="reservation-card" action="/reservation" method="POST">
+      @csrf
+      <div class="reservation-card__content">
+        <h2 class="reservation-card__content__ttl">予約</h2>
+        @if (count($errors) > 0)
+        <ul class="error__lists">
+          @foreach ($errors->all() as $error)
+          <li>{{$error}}</li>
+          @endforeach
+        </ul>
+        @endif
+        <input type="hidden" name="shop_id" value="{!! $shop->id !!}">
+        <input class="reservation-card__date-input" type="date" value="{!! $today !!}" name="date" id="date" />
+        <div class="reservation-card__pull-down">
+          <select name="time" id="time">
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+            <option value="22:00">22:00</option>
+          </select>
+        </div>
+        <div class="reservation-card__pull-down">
+          <select name="user_num" id="user_num">
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人</option>
+          </select>
+        </div>
+        <div class="reservation-details">
+          <p>Shop: <span id="shop-name">{{$shop->name}}</span></p>
+          <p>Date: <span id="selected-date"></span></p>
+          <p>Time: <span id="selected-time"></span></p>
+          <p>Number: <span id="selected-number"></span></p>
+        </div>
+      </div>
+      <input type="submit" class="reservation-btn" value="予約する">
+    </form>
+  </div>
+  
 </div>
 
-<script>
-// 戻るボタンのクリックイベントを処理する関数
-function goBack() {
-    // 直前のURLを取得
-    var previousUrl = "{{ Session::get('previousUrl') }}";
-    var currentRestaurantId = "{{ $restaurant->id }}";
-    
-    // 直前のURLが存在し、かつ予約完了ページまたはレビュー投稿ページである場合
-   if (previousUrl) {
-        if (previousUrl.includes('reservation/done')) {
-            // 直前のページが予約完了ページの場合、ブラウザの履歴を3つ戻る
-            window.history.go(-3);
-            return;
-        } else if (previousUrl.includes('review/')) {
-            // 直前のページがレビュー投稿ページの場合、restaurant_idを抽出して比較
-            var match = previousUrl.match(/review\/(\d+)/);
-            if (match) {
-                var previousRestaurantId = match[1];
-                if (previousRestaurantId == currentRestaurantId) {
-                    // restaurant_idが一致した場合、ブラウザの履歴を3つ戻る
-                    window.history.go(-3);
-                    return;
-                }
-            }
-        } else {
-            window.history.back();
-        }
-    } else {
-        window.history.back();
-    }
-}
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script> //日付選択
-    $(document).ready(function() {
-        $('#date').datepicker({
-            dateFormat: 'yy-mm-dd',
-            onSelect: function(dateText) {
-                $('#selected-date').text(dateText);
-            }
-        });
-    });
-</script>
-<script>
-    const form = document.querySelector('.reservation-form__body');
-
-    form.addEventListener('change', () => {
-
-        const date = document.getElementById('date').value;
-        const time = document.getElementById('time').value;
-        const number = document.getElementById('number').value;
-
-        document.getElementById('selected-date').textContent = date;
-        document.getElementById('selected-time').textContent = time;
-        document.getElementById('selected-number').textContent = number;
-    });
-</script>
 @endsection
 
+@section('scripts')
+<script src="{{ asset('js/reservation.js') }}"></script>
+@endsection

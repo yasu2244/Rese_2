@@ -5,124 +5,77 @@
 @endsection
 
 @section('main')
-@if(session('error'))
-    <div class="message_error">
-        {{ session('error') }}
+<div class="main">
+  <div class="user-info">
+    <h2 class="username">{{ $user->name }}さん</h2>
+    <a href="{{ route('review.posts') }}" class="list-btn">投稿したレビュー</a>
+  </div>
+  <div class="flex between mypage">
+    <div class="status">
+      <h3 class="status__ttl">予約状況</h3>
+      @foreach ($user->reservations as $reservation)
+      <div class="status__card">
+        <div class="flex align-items-center between status__card__top">
+          <img src="/img/time.png" alt="time-icon" width="25px" height="25px" />
+          <p>予約{{ $reservation->pivot->id }}</p>
+          <form class="ml-a" action="{{ route('reserve.delete', ['reservation_id' => $reservation->pivot->id]) }}" method="POST">
+            @csrf
+            <input class="cancel" type="image" src="/img/cross.png" alt="送信する" width="25px" height="25px" onclick='return confirm("予約を取り消しますか？");'>
+          </form>
+        </div>
+        <table class="status__card__bottom">
+          <tr>
+            <td>Shop</td>
+            <td>{{$reservation->name}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{$reservation->pivot->date}}</td>
+          </tr>
+          <tr>
+            <td>Time</td>
+            <td>{{$reservation->pivot->time}}</td>
+          </tr>
+          <tr>
+            <td>Number</td>
+            <td>{{$reservation->pivot->user_num}}人</td>
+          </tr>
+        </table>
+      </div>
+      @endforeach
     </div>
-@endif
-
-@if(session('success'))
-    <div class="message_success">
-        {{ session('success') }}
-    </div>
-@endif
-
-<div class="mypage-container">
-    <div class="reservation-section">
-        <h3>予約状況</h3>
-        @foreach($reservations as $index => $reservation)
-            <div class="reservation-card">
-                <div class="reservation-card__header">
-                    <i class="fas fa-clock  clock-icon"></i>
-                    <span>予約{{ $index + 1 }}</span>
-                    <button class="delete-button" data-reservation-id="{{ $reservation->id }}">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="reservation-info">
-                    <span class="info-label">Shop</span>
-                    <span class="info-value">{{ $reservation->restaurant->name }}</span>
-                </div>
-                <div class="reservation-info">
-                    <span class="info-label">Date</span>
-                    <span class="info-value">{{ $reservation->reservation_date }}</span>
-                </div>
-                <div class="reservation-info">
-                    <span class="info-label">Time</span>
-                    <span>{{ $reservation->formatted_time }}</span>
-                </div>
-                <div class="reservation-info">
-                    <span class="info-label">Number</span>
-                    <span>{{ $reservation->reservation_number }}人</span>            
-                </div>
-                <div class="reservation-change">
-                    <form method="GET" action="{{ route('reservation.change', ['reservation_id' => $reservation->id, 'restaurant_id' => $reservation->restaurant_id]) }}">
-                        @csrf
-                        <button type="submit" class="edit-button">
-                            <i class="fas fa-pencil-alt"></i> 予約変更
-                        </button>
-                    </form>
-                </div>
+    <div class="likes">
+      <h3 class="likes__ttl">お気に入り店舗</h3>
+      <div class="flex card-wrapper between wrap">
+        @foreach($user->likes as $shop)
+        <div class="shop-card">
+          <img class="shop-card__img" src="{!! $shop->image_url !!}" alt="shop-img" />
+          <div class="shop-card__content">
+            <h2 class="shop-card__content__ttl">{{$shop->name}}</h2>
+            <p class="shop-card__content__txt">
+              #{{$shop->area->name}}&nbsp;#{{$shop->genre->name}}
+            </p>
+            <div class="flex align-items-center between">
+              <a class="shop-card__content__link" href="{!! '/detail/' . $shop->id !!}">
+                詳しくみる
+              </a>
+              @if(count($shop->likes)==0)
+              <form method="POST" action="{{ route('like', ['shop_id' => $shop->id]) }}">
+                @csrf
+                <input class="shop-card__content__icon inactive" type="image" src="/img/unlike.png" alt="いいね" width="32px" height="32px">
+              </form>
+              @else
+              <form class="ml-a" method="POST" action="{{ route('unlike', ['shop_id' => $shop->id]) }}">
+                @csrf
+                <input class="shop-card__content__icon inactive" type="image" src="/img/like.png" alt="いいねを外す" width="32px" height="32px">
+              </form>
+              @endif
             </div>
+          </div>
+        </div>
         @endforeach
+      </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const reservationId = this.getAttribute('data-reservation-id');
-                if (confirm('予約を削除しますか？')) {
-                    axios.delete('/delete-reservation', {
-                        data: {
-                            reservation_id: reservationId
-                        }
-                    })
-                    .then(function (response) {
-                        alert(response.data.message);
-                        button.closest('.reservation-card').remove();
-                    })
-                    .catch(function (error) {
-                        alert('予約の削除に失敗しました');
-                    });
-                }
-            });
-        });
-    </script>   
-
-    <div class="user-favorites-section">
-        <div class="user-info">
-            <h2>{{ $userName }}さん</h2>
-            <a href="{{ route('review.posts') }}" class="list-btn">投稿したレビュー</a>
-        </div>
-        <h3>お気に入り店舗</h3>
-        <div class="favorite-cards">
-            @foreach ($favoriteRestaurants as $favorite)
-                <div class="restaurant-card">
-                    <img class="restaurant-image" src="{{ $favorite->restaurant->image }}" alt="{{ $favorite->restaurant->name }} Image">
-                    <div class="card-body">
-                        <h3 class="card-title">{{ $favorite->restaurant->name }}</h3>
-                        <div class="card-text-container">
-                            <p class="card-text">#{{ $favorite->restaurant->region }}</p>
-                            <p class="card-text">#{{ $favorite->restaurant->genre }}</p>
-                        </div>
-                        <div class="btn-container">
-                            <a href="/detail/{{ $favorite->restaurant->id }}" class="btn btn-detail" onclick="setReferringPage('mypage');">詳しく見る</a>
-                            @auth
-                                <form id="remove-favorite-form-{{ $favorite->restaurant->id }}" action="/favorite/remove" method="POST" style="display: none;">
-                                    @csrf
-                                    <input type="hidden" name="restaurant_id" value="{{ $favorite->restaurant->id }}">
-                                </form>
-                                <button class="favorite-btn" data-restaurant-id="{{ $favorite->restaurant->id }}">
-                                    <i class="fas fa-heart heart-icon"></i>
-                                </button>                       
-                            @endauth
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
+  </div>
 </div>
-<script> //「詳しく見る」
-function setReferringPage(page) {
-    sessionStorage.setItem('referringPage', page);
-}
-</script>
-
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('js/favorite-script.js') }}"></script>
-@endsection
-

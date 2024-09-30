@@ -26,6 +26,7 @@ class UpdateReviewRequest extends FormRequest
         return [
             'rating' => 'required',
             'comment' => 'nullable|string|max:255',
+            'images.*' => 'nullable|image|mimes:jpeg,png|max:2048',
         ];
     }
 
@@ -40,6 +41,9 @@ class UpdateReviewRequest extends FormRequest
             'rating.required' => '評価は必須です。',
             'comment.string' => 'コメントは文字列で指定してください。',
             'comment.max' => 'コメントは255文字以内で指定してください。',
+            'images.*.image' => 'アップロードするファイルは画像でなければなりません。',
+            'images.*.mimes' => 'アップロードできる画像の形式はjpegまたはpngのみです。',
+            'images.*.max' => '画像ファイルのサイズは2MB以下でなければなりません。',
         ];
     }
 }
