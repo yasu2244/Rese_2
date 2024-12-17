@@ -19,6 +19,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id', // role_idを追加
     ];
 
     /**
@@ -44,8 +45,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Shop::class, 'reservations')->withPivot('id', 'date', 'time', 'user_num');
     }
+
     public function likes()
     {
         return $this->belongsToMany(Shop::class, 'likes');
+    }
+
+    public function shops()
+    {
+        return $this->hasMany(Shop::class, 'owner_id'); 
+    }
+    
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

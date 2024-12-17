@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/auth.css') }}"> <!-- 必要に応じて管理者用のCSSを用意 -->
+<link rel="stylesheet" href="{{ asset('css/auth.css') }}"> 
 @endsection
 
 @section('main')
 <div class="main">
-  <form class="auth-card" action="{{ route('admin.login') }}" method="post"> <!-- URLを管理者用に変更 -->
+  <form class="auth-card" action="{{ route('admin.login.submit') }}" method="post"> 
     @csrf
-    <div class="auth-card__ttl">Admin Login</div> <!-- タイトルを変更 -->
+    <div class="auth-card__ttl">Admin/Shop Owner Login</div> 
     <div class="auth-card__item">
       <img class="auth-card__item__img" src="/img/email.png" alt="email-icon" width="25px" />
       <input class="auth-card__item__input" type="email" placeholder="Email" name="email" />

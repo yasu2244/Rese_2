@@ -11,6 +11,8 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'area_id', 'genre_id', 'description', 'image_url'];
+
     public function area()
     {
         return $this->belongsTo(Area::class);
@@ -88,5 +90,10 @@ class Shop extends Model
         $text = self::conditionFormat($conditions);
 
         return compact('shops', 'text');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }

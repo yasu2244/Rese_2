@@ -41,11 +41,6 @@ return [
             'provider' => 'users', // 一般ユーザー用のプロバイダー
         ],
 
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins', // 管理者用のプロバイダー
-        ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,10 +72,6 @@ return [
             'model' => App\Models\User::class,
         ],
 
-       'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class, // 管理者用のモデル
-        ],
     ],
 
     /*

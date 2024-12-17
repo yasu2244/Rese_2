@@ -1,0 +1,96 @@
+.main {
+    max-width: 1200px;
+    height: 70vh;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.main h1 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* リスト */
+.main ul {
+    list-style-type: none;
+    margin: 20px 0;
+    padding-left: 20px; /* 左余白を追加 */
+}
+
+.main ul li {
+    margin-bottom: 15px; /* リスト間の間隔を広げる */
+    padding-left: 10px; /* リストアイテムの左側に少し余白 */
+    position: relative;
+}
+
+.main ul li::before {
+    content: "•"; /* リストのアイコンとしてドットを追加 */
+    position: absolute;
+    left: 0;
+    color: #007bff; /* ドットの色 */
+    font-size: 1.2em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ボタン */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .main {
+        padding: 15px;
+        height: auto; /* 高さを自動調整 */
+    }
+
+    .main h1 {
+        font-size: 1.5em;
+        text-align: center; /* タイトルを中央揃え */
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 10px;
+    }
+
+    .main h1 {
+        font-size: 1.2em;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+}
