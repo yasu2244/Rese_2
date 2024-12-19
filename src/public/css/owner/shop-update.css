@@ -40,7 +40,9 @@ label {
 }
 
 input[type="text"],
-textarea {
+select,
+textarea,
+input[type="file"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -49,7 +51,9 @@ textarea {
 }
 
 input[type="text"]:focus,
-textarea:focus {
+select:focus,
+textarea:focus,
+input[type="file"]:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -58,6 +62,39 @@ textarea:focus {
 textarea {
     resize: vertical;
     min-height: 100px;
+}
+
+input[type="file"] {
+    visibility: visible;
+    position: relative;
+    width: 100%;
+    height: auto;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #f1f1f1;
+    border-color: #007bff;
+}
+
+label[for^="image_"]:hover {
+    background-color: #0056b3;
+}
+
+/* プレビュー画像のスタイル */
+.preview-image {
+    display: block;
+    max-width: 40%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -71,23 +108,48 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 40px;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-/* レスポンシブデザイン */
-@media (max-width: 600px) {
-    .main {
-        padding: 15px;
+/* メッセージ表示のスタイル */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .preview-image {
+        max-width: 100%;
+        margin: 10px 0;
     }
 
-    h1 {
-        font-size: 20px;
+    input[type="file"] {
+        font-size: 12px;
+        padding: 8px;
     }
 
-    button {
-        width: 100%;
+    .alert {
+        font-size: 0.9rem;
     }
 }

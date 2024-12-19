@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class Shop extends Model
@@ -101,5 +101,11 @@ class Shop extends Model
     public function reservations()
     {
         return $this->hasMany(Reservation::class);
+    }
+
+    public function getImageUrlAttribute($value)
+    {
+        // `storage/` が含まれていればそのまま返し、含まれていなければ付加
+        return str_starts_with($value, 'storage/') ? asset($value) : asset('storage/' . $value);
     }
 }
