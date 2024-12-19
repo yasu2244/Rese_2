@@ -6,9 +6,9 @@
 
 @section('main')
 <div class="main">
-  <form class="auth-card" action="{{ route('admin.login.submit') }}" method="post"> 
+<form class="auth-card" action="{{ route('admin-owner.login') }}" method="post">
     @csrf
-    <div class="auth-card__ttl">Admin/Shop Owner Login</div> 
+    <div class="auth-card__ttl">Admin / Shop Owner Login</div> 
     <div class="auth-card__item">
       <img class="auth-card__item__img" src="/img/email.png" alt="email-icon" width="25px" />
       <input class="auth-card__item__input" type="email" placeholder="Email" name="email" />

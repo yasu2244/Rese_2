@@ -7,6 +7,13 @@
 @section('main')
 <div class="main">
     <h1>管理者ダッシュボード</h1>
+    
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    
     <ul>
         <li><a href="{{ route('admin.shop_owners.list') }}">店舗代表者一覧</a></li>
         <li><a href="{{ route('admin.shop_owners.create') }}">店舗代表者の作成</a></li>

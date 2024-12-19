@@ -108,15 +108,6 @@ class ReviewController extends Controller
         $shop = Shop::with('area', 'genre')->findOrFail($shop_id);
         $reviews = Review::where('shop_id', $shop_id)->with('user')->get();
 
-        // 各口コミの画像URLを生成
-        foreach ($reviews as $review) {
-            if ($review->image_path) {
-                $review->image_url = Storage::url($review->image_path);  // 画像パスをそのままURLに変換
-            } else {
-                $review->image_url = null;  // 画像がない場合はnull
-            }
-        }
-
         return view('review.all-post', compact('shop', 'reviews'));
     }
 

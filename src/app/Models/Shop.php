@@ -96,4 +96,10 @@ class Shop extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+    // 予約とのリレーション
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

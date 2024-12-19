@@ -16,13 +16,23 @@
         <!-- 名前の編集 -->
         <div class="form-group">
             <label for="name">名前</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $shopOwner->name) }}" class="form-control" required>
+            <input type="text" id="name" name="name" value="{{ old('name', $shopOwner->name) }}" class="form-control @error('name') is-invalid @enderror" required>
+            @error('name')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <!-- メールアドレスの編集 -->
         <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" value="{{ old('email', $shopOwner->email) }}" class="form-control" required>
+            <input type="email" id="email" name="email" value="{{ old('email', $shopOwner->email) }}" class="form-control @error('email') is-invalid @enderror" required>
+            @error('email')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <!-- 担当店舗の選択 -->
@@ -39,6 +49,11 @@
                 </div>
                 @endforeach
             </div>
+            @error('shops.*')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <!-- ボタンエリア -->

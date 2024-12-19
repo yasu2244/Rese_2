@@ -111,6 +111,7 @@
     padding: 10px;
 }
   
+/* 予約カード */
 .reservation {
     width: 50%;
 }
@@ -119,10 +120,10 @@
     background: #305dff;
     border-radius: 5px;
     box-shadow: 2px 2px 4px gray;
-    height: 95%;
     margin: 64px auto;
     position: relative;
     width: 85%;
+    min-height: 600px;
 }
   
 .reservation-card__content {

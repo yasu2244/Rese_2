@@ -11,7 +11,7 @@
       <a class="shop-detail__link" href="/">＜</a>
       <h2 class="shop-detail__ttl">{{$shop->name}}</h2>
     </div>
-    <img class="shop-detail__img" src="{!! $shop->image_url !!}" alt="shop-img" width="100%" />
+    <img class="shop-detail__img" src="{{ asset($shop->image_url) }}" alt="shop-img" width="100%" />
     <p class="shop-detail__tag">#{{$shop->area->name}}&nbsp;#{{$shop->genre->name}}</p>
     <p class="shop-detail__txt">{{$shop->description}}</p>
 
@@ -36,7 +36,7 @@
 
               @if ($userReview->image_path)
                 <div class="review-image">
-                    <img src="{{ asset('storage/' . $userReview->image_path) }}" alt="Review Image" width="200">
+                <img src="{{ asset('storage/' . $userReview->image_path) }}" alt="Review Image" width="200">
                 </div>
             @endif
           </div>

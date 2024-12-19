@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AdminOwnerLoginController;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
@@ -62,3 +63,12 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+
+// 管理者・店舗代表者共通ログイン
+Route::middleware(['guest'])->group(function () {
+    Route::get('admin-owner-login', [AdminOwnerLoginController::class, 'showLoginForm'])->name('admin-owner.login.form');
+    Route::post('admin-owner-login', [AdminOwnerLoginController::class, 'login'])->name('admin-owner.login');
+});
+
+// 共通ログアウト
+Route::middleware('auth')->post('logout', [AdminOwnerLoginController::class, 'logout'])->name('logout');

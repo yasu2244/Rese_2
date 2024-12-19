@@ -28,7 +28,7 @@
 
             @if (!is_null($review->image_url))
                 <div class="review-image">
-                    <img src="{{ $review->image_url }}" alt="Review Image" width="200">
+                    <img src="{{ asset('storage/' . $review->image_path) }}" alt="Review Image">
                 </div>
             @endif
         </div>

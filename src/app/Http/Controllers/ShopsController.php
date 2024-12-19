@@ -12,35 +12,30 @@ class ShopsController extends Controller
 {
     public function index(Request $request)
     {
-        // クエリパラメータから並び替えオプションを取得
         $order = $request->query('order');
 
-        // クエリビルダーを使用して並び替え条件を適用
         $query = Shop::query();
 
         if ($order === 'random') {
-            // ランダム並び替え
             $query->inRandomOrder();
         } elseif ($order === 'high_rating') {
-            // 各ユーザーの評価の合計を計算し、評価が高い順に並び替え、評価がない店舗を最後に
-            $query->withSum('reviews as total_rating', 'rating') // 各店舗の評価の合計を取得
-                ->orderByRaw('total_rating = 0, total_rating desc'); // 評価の合計が0の店舗は最後
+            $query->withSum('reviews as total_rating', 'rating')
+                ->orderByRaw('total_rating = 0, total_rating desc');
         } elseif ($order === 'low_rating') {
-            // 各ユーザーの評価の合計を計算し、評価が低い順に並び替え、評価がない店舗を最後に
-            $query->withSum('reviews as total_rating', 'rating') // 各店舗の評価の合計を取得
-                ->orderByRaw('total_rating = 0, total_rating asc'); // 評価の合計が0の店舗は最後
+            $query->withSum('reviews as total_rating', 'rating')
+                ->orderByRaw('total_rating = 0, total_rating asc');
         }
 
-        // クエリの実行
-        $shops = $query->get();
+        $shops = $query->with('likes')->get();
 
-        // セッションフラッシュメッセージのクリア
-        session()->flash('fs_msg', null);
+        // ログイン中のユーザーの「いいね」を取得
+        $userLikes = [];
+        if (auth()->check()) {
+            $userLikes = auth()->user()->likes()->pluck('shop_id')->toArray();
+        }
 
-        // ビューにデータを渡す
-        return view('index', compact('shops'));
+        return view('index', compact('shops', 'userLikes'));
     }
-
 
     public function search(Request $request)
     {

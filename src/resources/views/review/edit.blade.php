@@ -10,7 +10,7 @@
     <div class="review-left">
 
         <div class="shop-card">
-            <img class="shop-card__img" src="{!! $shop->image_url !!}" alt="shop-img" />
+            <img class="shop-card__img" src="{{ asset($shop->image_url) }}" alt="shop-img" />
             <div class="shop-card__content">
                 <h2 class="shop-card__content__ttl">{{$shop->name}}</h2>
                 <p class="shop-card__content__txt">

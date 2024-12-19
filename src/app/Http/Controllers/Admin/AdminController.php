@@ -51,11 +51,15 @@ class AdminController extends Controller
         return redirect()->route('admin.shop_owners.list')->with('success', '店舗代表者を作成しました。');
     }
 
-    // 店舗代表者編集ページ
+    /// 店舗代表者編集ページ
     public function editShopOwner($id)
     {
         $shopOwner = User::with('shops')->findOrFail($id); // 店舗代表者とその担当店舗を取得
-        $shops = Shop::all(); // 全ての店舗を取得
+
+        // 現在の担当店舗と、担当者がいない店舗を取得
+        $shops = Shop::where('owner_id', $shopOwner->id)
+            ->orWhereNull('owner_id')
+            ->get();
 
         return view('admin.shop-owner-edit', compact('shopOwner', 'shops'));
     }
@@ -79,16 +83,32 @@ class AdminController extends Controller
             'email' => $validatedData['email'],
         ]);
 
-        // 既存の担当店舗をクリア
-        Shop::where('owner_id', $shopOwner->id)->update(['owner_id' => null]);
+        // 新しい担当店舗のIDを取得
+        $newShopIds = $validatedData['shops'] ?? [];
 
-        // 新しい担当店舗を更新
-        if (!empty($validatedData['shops'])) {
-            Shop::whereIn('id', $validatedData['shops'])->update(['owner_id' => $shopOwner->id]);
+        // 既存の担当店舗を取得
+        $currentShops = Shop::where('owner_id', $shopOwner->id)->pluck('id')->toArray();
+
+        // 割り当て解除する店舗
+        $shopsToDetach = array_diff($currentShops, $newShopIds);
+
+        // 新しく割り当てる店舗
+        $shopsToAttach = array_diff($newShopIds, $currentShops);
+
+        // 担当解除
+        if (!empty($shopsToDetach)) {
+            Shop::whereIn('id', $shopsToDetach)->update(['owner_id' => null]);
+        }
+
+        // 新しい担当店舗を割り当て
+        if (!empty($shopsToAttach)) {
+            Shop::whereIn('id', $shopsToAttach)->update(['owner_id' => $shopOwner->id]);
         }
 
         return redirect()->route('admin.shop_owners.list')->with('success', '店舗代表者を更新しました。');
     }
+
+
 
     // 店舗代表者を削除
     public function destroyShopOwner($id)
@@ -132,7 +152,7 @@ class AdminController extends Controller
 
         $today = Carbon::now()->toDateString();
 
-        return view('admin.shop-detail', compact('shop', 'reviews', 'userReview', 'today'));
+        return view('detail', compact('shop', 'reviews', 'userReview', 'today'));
     }
 
      // 店舗を削除

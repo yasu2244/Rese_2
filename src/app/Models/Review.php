@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+
 
 class Review extends Model
 {
@@ -16,6 +18,13 @@ class Review extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image_path 
+            ? Storage::url($this->image_path) 
+            : null;
     }
 
 }

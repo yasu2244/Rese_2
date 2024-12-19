@@ -40,7 +40,7 @@
 }
 
 .review-image img {
-    max-width: 100%; /* 幅いっぱいまで拡大 */
+    max-width: 40%; /* 幅いっぱいまで拡大 */
     height: auto;
     border-radius: 8px; /* 画像に角丸を追加 */
     margin-top: 10px;
