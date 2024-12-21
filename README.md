@@ -70,3 +70,65 @@ https://ec2-54-238-90-144.ap-northeast-1.compute.amazonaws.com/<br />
 ## ER図
 ![Rese_er](https://github.com/yasu2244/Rese/assets/76992290/490a3934-9905-434f-9b18-5d1b8d1e39c7)
 
+##環境構築
+ローカル環境下においてのテスト環境構築手順を示します。
+作業ディレクトリにgithubのリポジトリをcloneします。
+```
+git clone https://github.com/yasu2244/Rese_2.git
+```
+cloneしたRese2の直下ディレクトリに移動してDockerを起動します。
+```
+docker-compose up -d --build
+```
+phpコンテナにログインします。
+```
+docker-compose exec php bash
+```
+composerをインストールします・
+```
+composer install
+```
+データベースに接続するために、.env.exampleファイルをコピーして.envファイルを作成します。
+```
+cp .env.example .env
+```
+作成ができたら.envファイルの11行目以降を以下のように修正します。
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
+次にメール機能を使用するため31行目以降を修正します。今回はgmailを使用しています。
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_gmail_address@gmail.com
+MAIL_PASSWORD=your_gmail_app_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your_gmail_address@gmail.com
+MAIL_FROM_NAME="Reseサポート"
+```
+your_gmail_address@gmail.comにはご自身のgamilアドレスを設定してください。<br />
+MAIL_PASSWORDについて<br />
+* Googleアカウントにログインします。
+* Googleアカウントのセキュリティ設定ページ に移動します。
+* 「2段階認証プロセス」を有効にします。
+* 「アプリ パスワード」を選択し、メールに使用するパスワードを生成します。
+* 生成されたパスワードを .env の MAIL_PASSWORD に設定します。
+メール送信機能が正常に動くかの確認
+```
+php artisan tinker
+```
+
+
+
+
+
+
+
+
+
