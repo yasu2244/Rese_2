@@ -1,17 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 
+Auth::routes(['verify' => true]); // メール認証を有効化
+
 // 一般ユーザー向けルート
 Route::get('/', [ShopsController::class, 'index'])->name('root');
 Route::get('/detail/{shop_id}', [ShopsController::class, 'detail'])->name('shop.detail');
 Route::get('/search', [ShopsController::class, 'search'])->name('shop.search');
-Route::get('/thanks', fn() => view('thanks'))->name('thanks');
 
 Route::get('shop/{shop_id}/reviews', [ReviewController::class, 'allReviews'])->name('review.all');
 
@@ -23,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/unlike/{shop_id}', [FavoriteController::class, 'delete'])->name('unlike');
 
     // 予約関連
-    Route::post('/reservation', [ReservationsController::class, 'create'])->name('reserve.create');
+    Route::post('/reservation/completion', [ReservationsController::class, 'create'])->name('reserve.create');
     Route::delete('/reserve/{reservation_id}', [ReservationsController::class, 'delete'])->name('reserve.delete');
 
     // 口コミ関連

@@ -47,7 +47,7 @@
   </div>
 
   <div class="reservation">
-    <form class="reservation-card" action="/reservation" method="POST">
+    <form class="reservation-card" action="/reservation/completion" method="POST">
       @csrf
       <div class="reservation-card__content">
         <h2 class="reservation-card__content__ttl">予約</h2>

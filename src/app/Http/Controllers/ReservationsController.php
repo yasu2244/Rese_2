@@ -18,7 +18,7 @@ class ReservationsController extends Controller
                 'user_id' => Auth::id(),
                 'shop_id' => $request['shop_id']
             ]);
-            return view('reservation');
+            return view('reservation-completion');
         } catch (\Throwable $th) {
             return redirect('detail/' . $request['shop_id']);
         }

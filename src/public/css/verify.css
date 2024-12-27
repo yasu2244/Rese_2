@@ -1,0 +1,98 @@
+/* 全体のスタイリング */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* コンテナのスタイリング */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* タイトルのスタイリング */
+.container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 説明テキスト */
+.container p {
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 20px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* アラートメッセージ */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* ボタンのスタイリング */
+button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* フォームのスタイリング */
+form {
+    text-align: center;
+}
+
+/* --- レスポンシブデザイン: 768px以下の画面サイズに適用 --- */
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .container h1 {
+        font-size: 20px;
+    }
+
+    .container p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .alert-success {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    button.btn-primary {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+}

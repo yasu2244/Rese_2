@@ -6,7 +6,7 @@
 
 @section('main')
 <div class="main">
-    <h1>予約状況確認</h1>
+    <h1>予約状況リスト</h1>
     <table>
         <thead>
             <tr>
@@ -23,7 +23,7 @@
                 <td>{{ $reservation->shop->name }}</td>
                 <td>{{ $reservation->user->name }}</td>
                 <td>{{ $reservation->date }}</td>
-                <td>{{ $reservation->time }}</td>
+                <td>{{ \Carbon\Carbon::parse($reservation->time)->format('H時i分') }}</td>
                 <td>{{ $reservation->user_num }}</td>
             </tr>
             @endforeach

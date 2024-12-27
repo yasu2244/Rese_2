@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail 
 {
     use HasFactory, Notifiable;
 
@@ -41,23 +42,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // ユーザーの予約リレーション
     public function reservations()
     {
         return $this->belongsToMany(Shop::class, 'reservations')->withPivot('id', 'date', 'time', 'user_num');
     }
 
+    // ユーザーのお気に入りリレーション
     public function likes()
     {
         return $this->belongsToMany(Shop::class, 'likes');
     }
 
+    // 店舗代表者が管理する店舗リレーション
     public function shops()
     {
         return $this->hasMany(Shop::class, 'owner_id'); 
     }
-    
+
+    // ユーザーの役割リレーション
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \Illuminate\Auth\Notifications\VerifyEmail);
     }
 }

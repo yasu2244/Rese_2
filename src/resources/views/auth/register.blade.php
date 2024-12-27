@@ -6,7 +6,7 @@
 
 @section('main')
 <main class="main">
-  <form class="auth-card" action="/register" method="post">
+  <form class="auth-card" action="{{ route('register') }}" method="post">
     @csrf
     <div class="auth-card__ttl">Registration</div>
     <div class="auth-card__item">
@@ -42,4 +42,8 @@
     </div>
   </form>
 </main>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/auth.js') }}"></script>
 @endsection

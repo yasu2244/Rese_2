@@ -64,6 +64,6 @@ class AdminOwnerLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin-owner.login');
+        return redirect()->route('admin-owner.login.form')->with('status', 'ログアウトしました');
     }
 }
