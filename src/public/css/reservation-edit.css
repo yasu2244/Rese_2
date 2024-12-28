@@ -1,0 +1,140 @@
+/* 全体のスタイル */
+.main {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.main__title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* フォーム全体 */
+.reservation-form__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* エラーメッセージ */
+.reservation-form__error-message {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #d9534f;
+    font-weight: bold;
+}
+
+/* フォームの入力と選択肢 */
+.reservation-form__group {
+    margin-bottom: 20px;
+}
+
+.reservation-form__label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.reservation-form__input,
+.reservation-form__select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.reservation-form__input:focus,
+.reservation-form__select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* ボタンのコンテナ */
+.reservation-form__actions {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* 共通のボタンスタイル */
+.reservation-form__button {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 更新ボタン */
+.reservation-form__button--update {
+    background-color: #007bff;
+    color: #fff;
+    width: 65%;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.reservation-form__button--update:hover {
+    background-color: #0056b3;
+}
+
+/* 削除ボタン */
+.reservation-form__button--delete {
+    background-color: #d9534f;
+    color: #fff;
+    width: 30%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.reservation-form__button--delete:hover {
+    background-color: #c9302c;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .main {
+        padding: 15px;
+    }
+
+    .main__title {
+        font-size: 20px;
+    }
+
+    .reservation-form__actions {
+        flex-direction: column;
+    }
+
+    .reservation-form__button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .reservation-form__button--update {
+        width: 75%;
+    }
+    
+    .reservation-form__button--delete {
+        width: 50%;
+    }
+
+    .reservation-form__button--update {
+        margin-bottom: 10px;
+    }
+
+    .reservation-form__button--delete {
+        margin-bottom: 0;
+    }
+}

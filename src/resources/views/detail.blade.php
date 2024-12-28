@@ -51,38 +51,34 @@
       @csrf
       <div class="reservation-card__content">
         <h2 class="reservation-card__content__ttl">予約</h2>
-        @if (count($errors) > 0)
-        <ul class="error__lists">
-          @foreach ($errors->all() as $error)
-          <li>{{$error}}</li>
-          @endforeach
-        </ul>
-        @endif
+        @if ($errors->any())
+          <div class="error__container">
+            <ul class="error__lists">
+              @foreach ($errors->all() as $error)
+              <li class="error__item">{{$error}}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
         <input type="hidden" name="shop_id" value="{!! $shop->id !!}">
         <input class="reservation-card__date-input" type="date" value="{!! $today !!}" name="date" id="date" />
         <div class="reservation-card__pull-down">
-          <select name="time" id="time">
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-            <option value="22:00">22:00</option>
+          <select name="time" id="time" required>
+              <option value="">時間を選択してください</option>
+              @foreach ($timeSlots as $time)
+                  <option value="{{ $time }}">{{ $time }}</option>
+              @endforeach
           </select>
         </div>
         <div class="reservation-card__pull-down">
-          <select name="user_num" id="user_num">
-            <option value="1">1人</option>
-            <option value="2">2人</option>
-            <option value="3">3人</option>
-            <option value="4">4人</option>
+          <select class="number-form" name="user_num" id="user_num" required>
+            <option value="">人数を選択してください</option>
+            @for ($i = 1; $i <= 10; $i++)
+                <option value="{{ $i }}">{{ $i }}人</option>
+            @endfor
           </select>
         </div>
+
         <div class="reservation-details">
           <p>Shop: <span id="shop-name">{{$shop->name}}</span></p>
           <p>Date: <span id="selected-date"></span></p>

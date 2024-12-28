@@ -136,10 +136,21 @@
     margin-bottom: 28px;
 }
   
-.error__lists {
-    margin: 1rem 0;
-    color: #fff;
-}
+.error__container {
+    margin-bottom: 20px;
+    color: red;
+    font-size: 14px;
+  }
+  
+  .error__lists {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .error__item {
+    margin-bottom: 5px;
+  }
+  
   
 .reservation-card__date-input {
     padding: 7px 30px 7px 10px;

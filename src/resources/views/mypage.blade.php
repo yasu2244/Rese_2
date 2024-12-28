@@ -18,10 +18,12 @@
         <div class="flex align-items-center between status__card__top">
           <img src="/img/time.png" alt="time-icon" width="25px" height="25px" />
           <p>予約{{ $reservation->pivot->id }}</p>
-          <form class="ml-a" action="{{ route('reserve.delete', ['reservation_id' => $reservation->pivot->id]) }}" method="POST">
+          <form class="ml-a" method="GET" action="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}">
             @csrf
-            <input class="cancel" type="image" src="/img/cross.png" alt="送信する" width="25px" height="25px" onclick='return confirm("予約を取り消しますか？");'>
-          </form>
+            <a href="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}" class="edit-link">
+                予約変更・削除
+            </a>
+        </form>
         </div>
         <table class="status__card__bottom">
           <tr>

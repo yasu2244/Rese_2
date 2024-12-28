@@ -23,6 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初期値を設定
     selectedDate.textContent = dateInput.value;
     selectedTime.textContent = timeSelect.value;
-    selectedNumber.textContent = userNumSelect.value + '人';
+    selectedNumber.textContent = userNumSelect.value;
   });
   

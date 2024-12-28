@@ -27,7 +27,10 @@ Route::middleware('auth')->group(function () {
 
     // 予約関連
     Route::post('/reservation/completion', [ReservationsController::class, 'create'])->name('reserve.create');
-    Route::delete('/reserve/{reservation_id}', [ReservationsController::class, 'delete'])->name('reserve.delete');
+    Route::get('/reserve/{reservation_id}/edit', [ReservationsController::class, 'edit'])->name('reserve.edit');
+    Route::put('/reserve/{reservation_id}', [ReservationsController::class, 'update'])->name('reserve.update');
+    Route::delete('/reserve/{reservation_id}', [ReservationsController::class, 'destroy'])->name('reserve.destroy');
+
 
     // 口コミ関連
     Route::get('/review/posts', [ReviewController::class, 'index'])->name('review.posts');

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Carbon\Carbon;
 
 class ReservationRequest extends FormRequest
 {
@@ -23,12 +24,18 @@ class ReservationRequest extends FormRequest
    */
   public function rules()
   {
-    return [
-      //
-      'date' => ['required', 'after:yesterday', 'date'],
-      'time' => ['required'],
-      'user_num' => ['required', 'integer'],
-    ];
+      return [
+          'date' => ['required', 'after:yesterday', 'date'],
+          'time' => ['required', function ($attribute, $value, $fail) {
+              $currentDateTime = now();
+              $reservationDateTime = Carbon::createFromFormat('Y-m-d H:i', $this->date . ' ' . $value);
+
+              if ($reservationDateTime->lessThanOrEqualTo($currentDateTime->addHours(2))) {
+                  $fail('予約は現在時刻の2時間後以降のみ可能です');
+              }
+          }],
+          'user_num' => ['required', 'integer'],
+      ];
   }
 
   public function messages()
