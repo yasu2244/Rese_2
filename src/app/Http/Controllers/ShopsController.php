@@ -47,8 +47,10 @@ class ShopsController extends Controller
         $shops = $searchResult['shops'];
         $text = "「" . $searchResult['text'] . "」の検索結果";
 
+        $userLikes = auth()->check() ? auth()->user()->likes()->pluck('shop_id')->toArray() : [];
+
         session()->flash('fs_msg', $text);
-        return view('index', compact("shops", "text"));
+        return view('index', compact("shops", "text", "userLikes"));
     }
 
     public function detail($shop_id)
