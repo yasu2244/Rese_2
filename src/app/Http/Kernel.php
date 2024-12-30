@@ -65,4 +65,10 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        // 毎日朝8時に実行するタスク
+        $schedule->command('reminders:send')->dailyAt('08:00');
+    }
 }

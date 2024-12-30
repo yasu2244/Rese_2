@@ -22,12 +22,14 @@ class SendTodayReservationReminders extends Command
         $today = Carbon::today();
 
         // 今日の予約を取得
-        $reservations = Reservation::whereDate('reservation_date', $today)->get();
+        $reservations = Reservation::whereDate('date', $today)->get();
 
         foreach ($reservations as $reservation) {
             // ユーザーにリマインド通知を送信
             $reservation->user->notify(new ReservationReminder($reservation));
         }
+
+        \Log::info('リマインダー送信が実行されました');
 
         $this->info('Reservation reminders have been sent.');
     }

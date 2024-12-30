@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('reminders:today')->dailyAt('08:00'); // 毎日8時に実行
+        $schedule->command('reminders:today')->everyMinute();
     }
 
     /**

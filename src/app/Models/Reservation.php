@@ -29,15 +29,17 @@ class Reservation extends Model
         return $reservation;
     }
 
-     // 店舗とのリレーション
-     public function shop()
-     {
-         return $this->belongsTo(Shop::class);
-     }
- 
-     // ユーザーとのリレーション
-     public function user()
-     {
-         return $this->belongsTo(User::class);
-     }
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected $casts = [
+        'date' => 'date',
+    ];
 }
