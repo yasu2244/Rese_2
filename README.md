@@ -101,7 +101,17 @@ DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
-次にメール機能を使用するため31行目以降を修正します。今回はgmailを使用しています。
+phpコンテナ内でアプリケーションの暗号キーの作成、テーブルとダミーデータの作成を行います。
+```
+php artisan key:generate
+```
+```
+php artisan migrate
+```
+```
+php artisan db:seed
+```
+次にメール機能を使用するため.envファイル31行目以降を修正します。今回はgmailを使用しています。
 ```
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.gmail.com
@@ -123,9 +133,19 @@ MAIL_PASSWORDについて<br />
 ```
 php artisan tinker
 ```
+シーディング後だと管理者ユーザーが追加されているためID2のユーザーを指定しています。
+```
+$user = App\Models\User::first(2);
+```
+```
+$user->sendEmailVerificationNotification();
+```
+以上でメールが送信されます。<br />
 
-
-
+次にストレージのシンボリックリンクを作成。
+```
+php artisan storage:link
+```
 
 
 
