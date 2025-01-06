@@ -30,7 +30,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/reserve/{reservation_id}/edit', [ReservationsController::class, 'edit'])->name('reserve.edit');
     Route::put('/reserve/{reservation_id}', [ReservationsController::class, 'update'])->name('reserve.update');
     Route::delete('/reserve/{reservation_id}', [ReservationsController::class, 'destroy'])->name('reserve.destroy');
-
+    
+    //QRコード表示
+    Route::get('/qr/{reservation_id}', [ReservationsController::class, 'showQr'])->name('qr.show');
 
     // 口コミ関連
     Route::get('/review/posts', [ReviewController::class, 'index'])->name('review.posts');
@@ -39,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
     Route::put('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
 });
 
 // 認証関連

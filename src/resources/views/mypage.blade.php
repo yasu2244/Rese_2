@@ -15,15 +15,14 @@
       <h3 class="status__ttl">予約状況</h3>
       @foreach ($user->reservations as $reservation)
       <div class="status__card">
-        <div class="flex align-items-center between status__card__top">
+        <div class="status__card__top">
           <img src="/img/time.png" alt="time-icon" width="25px" height="25px" />
           <p>予約{{ $reservation->pivot->id }}</p>
-          <form class="ml-a" method="GET" action="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}">
-            @csrf
-            <a href="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}" class="edit-link">
-                予約変更・削除
-            </a>
-        </form>
+        </div>
+        <div class="qrcode__link">
+          <a href="{{ route('qr.show', ['reservation_id' => $reservation->pivot->id]) }}" class="qr-link">
+            QRコードを表示
+          </a>
         </div>
         <table class="status__card__bottom">
           <tr>
@@ -43,6 +42,14 @@
             <td>{{$reservation->pivot->user_num}}人</td>
           </tr>
         </table>
+        <form class="ml-a" method="GET" action="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}">
+            @csrf
+            <div class="reservation-actions">
+              <a href="{{ route('reserve.edit', ['reservation_id' => $reservation->pivot->id]) }}" class="edit-link">
+                  予約変更・削除
+              </a>
+            </div>
+        </form>
       </div>
       @endforeach
     </div>

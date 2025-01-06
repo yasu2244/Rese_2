@@ -37,8 +37,9 @@ class ShopController extends Controller
             'description' => $request->description,
             'area_id' => $request->area_id,
             'genre_id' => $request->genre_id,
-            'image_url' => $imagePath, // 保存された画像パス
+            'image_url' => $imagePath,
             'owner_id' => auth()->id(),
+            'qr_code' => Str::uuid(), 
         ]);
 
         return redirect()->route('owner.dashboard')->with('success', '店舗が作成されました。');
@@ -48,8 +49,8 @@ class ShopController extends Controller
     public function edit()
     {
         $shops = Shop::where('owner_id', auth()->id())->get(); // ログイン中の店舗代表者が担当する店舗
-        $areas = Area::all(); // 地域情報を取得
-        $genres = Genre::all(); // ジャンル情報を取得
+        $areas = Area::all();
+        $genres = Genre::all();
         return view('owner.shop-update', compact('shops', 'areas', 'genres'));
     }
 

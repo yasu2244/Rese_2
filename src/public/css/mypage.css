@@ -23,7 +23,8 @@
     text-align: center;
     font-weight: bold;
 }
-  
+
+/* ステータスエリア */
 .status {
     width: 50%;
 }
@@ -35,16 +36,30 @@
 
 .status__card {
     background: #305dff;
-    width: 80%;
-    margin: 30px 0;
+    width: 60%;
+    margin: 30px auto;
     padding: 30px;
     color: #ffffff;
     border-radius: 5px;
     box-shadow: 2px 2px 4px gray;
 }
 
+/* カード上部 */
 .status__card__top {
-    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+/* QRコードリンク */
+.qrcode__link {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -25px;
+}
+
+/* カード下部テーブル */
+.status__card__bottom {
+    margin-top: 10px;
 }
 
 .status__card__bottom tr {
@@ -54,6 +69,32 @@
 .status__card__bottom td {
     width: 100px;
     vertical-align: middle;
+}
+
+/* QRコードリンクのスタイル */
+.qr-link {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    color: #305dff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.qr-link:hover {
+    background-color: #c2c2c2;
+    color: #305dff;
+}
+
+/* 予約変更・削除ボタン */
+.reservation-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
 }
 
 .edit-link {
@@ -74,7 +115,7 @@
     color: #305dff;
 }
 
-
+/* お気に入りエリア */
 .likes {
     width: 50%;
 }
@@ -86,7 +127,7 @@
 
 .shop-card {
     width: 300px;
-    height: 280px;
+    height: auto;
     background: #fff;
     border-radius: 5px;
     box-shadow: 2px 2px 4px gray;
@@ -96,7 +137,7 @@
 .shop-card__img {
     border-radius: 5px 5px 0 0;
     width: 100%;
-    height: 150px;
+    height: auto;
     max-height: 150px;
     object-fit: cover;
 }
@@ -125,22 +166,8 @@
     cursor: pointer;
 }
 
-.shop-card__content__icon {
-    cursor: pointer;
-}
-
-.shop-card__content__icon.inactive {
-    fill: #eee;
-}
-
-/* スマートフォンサイズ向け（600px以下） */
-@media (max-width: 600px) {
-    .main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
     .user-info {
         flex-direction: column;
         align-items: center;
@@ -151,6 +178,7 @@
     .username {
         text-align: center;
         margin-bottom: 16px;
+        font-size: 28px;
     }
 
     .list-btn {
@@ -158,7 +186,8 @@
     }
 
     .status, .likes {
-        width: 90%;
+        width: 100%;
+        margin-bottom: 50px;
     }
 
     .status__card, .shop-card {
@@ -171,13 +200,19 @@
         text-align: center;
     }
 
-    .likes__ttl {
-        margin-top: 35px;
-    }
-
     .status__card__bottom td {
         width: auto;
         text-align: left;
+    }
+
+    .shop-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .shop-card__img {
+        max-height: none;
+        object-fit: contain;
     }
 
     .shop-card__content__ttl {
@@ -191,5 +226,14 @@
     .shop-card__content__link {
         padding: 5px 10px;
         font-size: 14px;
+    }
+
+    .qrcode__link {
+        text-align: center; 
+        margin-top: 10px;
+    }
+
+    .status__card__actions {
+        justify-content: center; 
     }
 }

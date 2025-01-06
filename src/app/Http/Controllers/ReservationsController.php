@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Requests\ReservationRequest;
 
 class ReservationsController extends Controller
@@ -77,6 +78,42 @@ class ReservationsController extends Controller
         $reservation->delete();
 
         return redirect()->route('mypage')->with('fs_msg', '予約を削除しました');
+    }
+
+    public function showQr($reservation_id)
+    {
+        $reservation = Reservation::findOrFail($reservation_id);
+
+        if ($reservation->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        return view('reservations.qr', [
+            'reservation' => $reservation,
+            'qr_code' => QrCode::size(200)->generate($reservation->qr_code),
+        ]);
+    }
+
+    public function verifyQrCode(Request $request)
+    {
+        $reservation = Reservation::where('qr_code', $request->qr_code)->first();
+
+        if ($reservation) {
+            $reservation->update([
+                'is_visited' => true,
+                'visited_at' => now(),
+            ]);
+
+            return response()->json([
+                'status' => 'success',
+                'reservation' => $reservation,
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => '予約が見つかりません。',
+        ], 404);
     }
 
 }
