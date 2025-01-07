@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Requests\ReservationRequest;
 
@@ -17,7 +18,8 @@ class ReservationsController extends Controller
                 'time' => $request['time'],
                 'user_num' => $request['user_num'],
                 'user_id' => Auth::id(),
-                'shop_id' => $request['shop_id']
+                'shop_id' => $request['shop_id'],
+                'qr_code' => Str::uuid(), 
             ]);
             return view('reservation-completion');
         } catch (\Throwable $th) {
@@ -46,12 +48,6 @@ class ReservationsController extends Controller
 
     public function update(ReservationRequest $request, $reservation_id)
     {
-        $request->validate([
-            'date' => 'required|date|after_or_equal:today',
-            'time' => 'required',
-            'user_num' => 'required|integer|min:1|max:10',
-        ]);
-
         $reservation = Reservation::findOrFail($reservation_id);
 
         if ($reservation->user_id !== auth()->id()) {
@@ -62,6 +58,7 @@ class ReservationsController extends Controller
             'date' => $request->input('date'),
             'time' => $request->input('time'),
             'user_num' => $request->input('user_num'),
+            'qr_code' => Str::uuid(),
         ]);
 
         return redirect()->route('mypage')->with('fs_msg', '予約内容を更新しました');
@@ -88,7 +85,11 @@ class ReservationsController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
-        return view('reservations.qr', [
+        if (is_null($reservation->qr_code)) {
+            throw new \Exception('QRコードの値が存在しません。');
+        }
+
+        return view('qr', [
             'reservation' => $reservation,
             'qr_code' => QrCode::size(200)->generate($reservation->qr_code),
         ]);

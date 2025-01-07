@@ -14,7 +14,8 @@ class Reservation extends Model
         'time',
         'user_num',
         'user_id',
-        'shop_id'
+        'shop_id',
+        'qr_code', 
     ];
     public static function postReservation($request, $shop_id)
     {
