@@ -8,6 +8,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController;
 
 Auth::routes(['verify' => true]); // メール認証を有効化
 
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('review.edit');
     Route::put('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
+    Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
+    Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
 
 });
 
