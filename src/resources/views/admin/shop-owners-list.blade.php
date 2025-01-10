@@ -5,8 +5,8 @@
 @endsection
 
 @section('main')
+<h1 class="title">店舗代表者一覧</h1>
 <div class="main-container">
-    <h1 class="title">店舗代表者一覧</h1>
     <table class="shop-owners-table">
         <thead>
             <tr>
@@ -28,5 +28,8 @@
             @endforeach
         </tbody>
     </table>
+</div>
+<div class="btn-container">
+    <a href="{{ route('admin.dashboard') }}" class="btn btn-back">戻る</a>
 </div>
 @endsection

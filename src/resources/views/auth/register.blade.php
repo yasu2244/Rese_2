@@ -11,14 +11,14 @@
     <div class="auth-card__ttl">Registration</div>
     <div class="auth-card__item">
       <img class="auth-card__item__img" src="/img/username.png" alt="username-icon" width="25px" />
-      <input class="auth-card__item__input" type="text" placeholder="Username" name="name" />
+      <input class="auth-card__item__input" type="text" placeholder="Username" name="name" value="{{ old('name') }}" />
     </div>
       @error('name')
       <p class="error-message">{{ $message }}</p>
       @enderror
     <div class="auth-card__item">
       <img class="auth-card__item__img" src="/img/email.png" alt="email-icon" width="25px" />
-      <input class="auth-card__item__input" type="email" placeholder="Email" name="email" />
+      <input class="auth-card__item__input" type="email" placeholder="Email" name="email" value="{{ old('email') }}" />
     </div>
       @error('email')
       <p class="error-message">{{ $message }}</p>

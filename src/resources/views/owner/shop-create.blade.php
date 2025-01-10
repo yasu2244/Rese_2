@@ -65,8 +65,9 @@
                     @enderror
                 </div>
 
-                <div class="submit-btn-wrapper">
+                <div class="button-group">
                     <button type="submit" class="submit-btn">店舗を登録</button>
+                    <a href="{{ route('owner.dashboard') }}" class="cancel-btn">キャンセル</a>
                 </div>
             </form>
         </div>

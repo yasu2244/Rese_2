@@ -1,67 +1,58 @@
-/* フォーム全体のスタイル */
-#payment-form {
-    max-width: 400px;
+.qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* ラベルのスタイル */
-#payment-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+h1 {
+    text-align: center;
+    font-size: 24px;
     color: #333;
-}
-
-/* 入力フィールドのスタイル */
-#payment-form input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-/* カード要素のスタイル */
-#card-element {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
     margin-bottom: 20px;
 }
 
-/* ボタンのスタイル */
-#payment-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
+.btn {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 15px 40px;
+    background-color: #305dff;
     color: #fff;
-    border: none;
-    border-radius: 4px;
+    text-decoration: none;
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* ボタンのホバー時のスタイル */
-#payment-form button:hover {
-    background-color: #0056b3;
-}
-
-/* 成功メッセージのスタイル */
-p[style="color: green;"] {
-    text-align: center;
     font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* エラーメッセージのスタイル */
-p[style="color: red;"] {
-    text-align: center;
-    font-weight: bold;
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #274bcc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .qrcode {
+        margin: 30px auto;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
 }

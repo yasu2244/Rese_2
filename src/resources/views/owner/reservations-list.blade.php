@@ -6,7 +6,10 @@
 
 @section('main')
 <div class="main">
-    <h1>予約状況リスト</h1>
+    <div class="resrve-list__header">
+        <a class="resrve-list__link" href="/owner/dashboard">＜</a>
+        <h2 class="reseve-list__ttl">予約状況リスト</h2>
+    </div>
     <table>
         <thead>
             <tr>

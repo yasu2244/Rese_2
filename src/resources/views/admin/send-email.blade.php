@@ -9,15 +9,18 @@
     <h1>お知らせメール送信</h1>
     <form action="{{ route('admin.send_email.send') }}" method="post">
         @csrf
-        <div>
+        <div class="form-group">
             <label for="subject">件名</label>
             <input type="text" id="subject" name="subject" required>
         </div>
-        <div>
+        <div class="form-group">
             <label for="message">本文</label>
             <textarea id="message" name="message" rows="15" required></textarea>
         </div>
-        <button type="submit">送信</button>
+        <div class="button-group">
+            <button type="submit" class="btn btn-submit">送信</button>
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-back">戻る</a>
+        </div>
     </form>
 </div>
 @endsection

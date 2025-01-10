@@ -6,7 +6,10 @@
 
 @section('main')
 <div class="main">
-    <h1>店舗更新</h1>
+    <div class="shop-update__header">
+        <a class="shop-update__link" href="/owner/dashboard">＜</a>
+        <h2 class="shop-update__ttl">店舗編集</h2>
+    </div>
     @foreach ($shops as $shop)
     <form action="{{ route('owner.shops.update.process', $shop->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

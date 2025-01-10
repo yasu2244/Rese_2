@@ -58,7 +58,7 @@
 
         <!-- ボタンエリア -->
         <div class="button-group">
-            <div class="left-buttons">
+            <div class="form-buttons">
                 <button type="submit" class="btn btn-primary">更新</button>
                 <a href="{{ route('admin.shop_owners.list') }}" class="btn btn-secondary">キャンセル</a>
             </div>

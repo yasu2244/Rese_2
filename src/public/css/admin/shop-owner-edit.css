@@ -60,14 +60,13 @@ input[type="email"]:focus {
     margin-top: 20px;
 }
 
-.left-buttons {
+.form-buttons {
     display: flex;
     align-items: center;
 }
 
 button {
     display: inline-block;
-    font-size: 16px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
@@ -75,6 +74,7 @@ button {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
 button.btn-primary {
@@ -82,20 +82,11 @@ button.btn-primary {
     color: #fff;
     padding: 10px 45px;
     margin-right: 20px;
+    font-size: 16px;
 }
 
 button.btn-primary:hover {
     background-color: #0056b3;
-}
-
-button.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    padding: 10px 25px;
-}
-
-button.btn-secondary:hover {
-    background-color: #5a6268;
 }
 
 a.btn-secondary {
@@ -109,6 +100,7 @@ a.btn-secondary {
     background-color: #6c757d;
     color: #fff;
     transition: background-color 0.3s;
+    white-space: nowrap;
 }
 
 a.btn-secondary:hover {
@@ -125,9 +117,71 @@ button.btn-danger:hover {
     background-color: #a71d2a;
 }
 
-/* 削除フォームを右寄せ */
 .delete-form {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
 }
+
+@media (max-width: 768px) {
+    .main {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px; 
+    }
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .shop-checkboxes {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* カラムの最小幅を縮小 */
+        gap: 8px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .form-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    button.btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 35px;
+        margin-right: 20px;
+        font-size: 14px;
+    }
+
+    a.btn-secondary {
+        padding: 14px 15px;
+        font-size: 14px;
+    }
+
+    .delete-form {
+        justify-content: center;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+

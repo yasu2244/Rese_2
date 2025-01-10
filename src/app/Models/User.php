@@ -70,4 +70,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new \Illuminate\Auth\Notifications\VerifyEmail);
     }
+
+    public function hasRole($role)
+    {
+        return $this->role && $this->role->name === $role;
+    }
+
 }

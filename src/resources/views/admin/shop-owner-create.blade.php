@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin/shop-create-owner.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/shop-owner-create.css') }}">
 @endsection
 
 @section('main')
@@ -40,7 +40,7 @@
 
         <div class="form-actions">
             <button type="submit" class="btn btn-primary">作成</button>
-            <a href="{{ route('admin.shop_owners.list') }}" class="btn btn-secondary">キャンセル</a>
+            <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">戻る</a>
         </div>
     </form>
 </div>
