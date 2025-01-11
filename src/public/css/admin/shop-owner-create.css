@@ -84,9 +84,36 @@
     background-color: #6c757d;
     color: #fff;
     border: none;
-    padding: 15px 35px 8px 35px;;
+    padding: 10px 35px;
 }
 
 .btn-secondary:hover {
     background-color: #5a6268;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .main {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .form {
+        gap: 10px;
+    }
+
+    .form-group input {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
 }

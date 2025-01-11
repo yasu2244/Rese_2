@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ $reservation->shop->name }}</td>
                 <td>{{ $reservation->user->name }}</td>
-                <td>{{ $reservation->date }}</td>
+                <td>{{ \Carbon\Carbon::parse($reservation->date)->format('Y年m月d日') }}</td>
                 <td>{{ \Carbon\Carbon::parse($reservation->time)->format('H時i分') }}</td>
                 <td>{{ $reservation->user_num }}</td>
             </tr>

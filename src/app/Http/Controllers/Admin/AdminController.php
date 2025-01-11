@@ -35,6 +35,7 @@ class AdminController extends Controller
     // 店舗代表者を保存
     public function storeShopOwner(Request $request)
     {
+        //requestフェイルを作成する
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',

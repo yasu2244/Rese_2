@@ -6,7 +6,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: 30px; /* Added margin to move the table down */
+    margin-top: 30px;
 }
 
 .resrve-list__header {
@@ -72,11 +72,34 @@ tbody tr:hover {
         padding: 10px;
     }
 
+    .resrve-list__header {
+        flex-direction: column; /* ヘッダーを縦並びに */
+        align-items: flex-start;
+    }
+
+    .resrve-list__link {
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+
+    .reseve-list__ttl {
+        font-size: 20px; 
+    }
+
+    /* テーブル全体をスクロール可能に */
     table {
         font-size: 14px;
+        display: block;
+        overflow-x: auto; /* 横スクロールを有効に */
+        white-space: nowrap;
     }
 
     thead th, tbody td {
         padding: 8px 10px;
+    }
+
+    tbody tr {
+        display: table-row;
+        width: 100%;
     }
 }
