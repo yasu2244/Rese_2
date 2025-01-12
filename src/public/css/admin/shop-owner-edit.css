@@ -123,6 +123,13 @@ button.btn-danger:hover {
     margin-top: 20px;
 }
 
+/* エラーメッセージ */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 @media (max-width: 768px) {
     .main {
         max-width: 90%;

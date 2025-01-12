@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreShopRequest;
+use App\Http\Requests\UpdateShopRequest;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
@@ -13,23 +15,14 @@ class ShopController extends Controller
     // 店舗作成フォーム表示
     public function create()
     {
-        $areas = Area::all(); // 地域情報を取得
-        $genres = Genre::all(); // ジャンル情報を取得
+        $areas = Area::all();
+        $genres = Genre::all();
         return view('owner.shop-create', compact('areas', 'genres'));
     }
 
     // 店舗情報保存処理
-    public function store(Request $request)
+    public function store(StoreShopRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'area_id' => 'required|exists:areas,id',
-            'genre_id' => 'required|exists:genres,id',
-            'image' => 'required|file|image|mimes:jpeg,png|max:2048',
-        ]);
-
-        // 画像アップロード処理
         $imagePath = $request->file('image')->store('shops', 'public');
 
         Shop::create([
@@ -45,42 +38,49 @@ class ShopController extends Controller
         return redirect()->route('owner.dashboard')->with('success', '店舗が作成されました。');
     }
 
-    // 店舗更新フォーム表示
-    public function edit()
+    // 担当店舗一覧ページ
+    public function index()
     {
-        $shops = Shop::where('owner_id', auth()->id())->get(); // ログイン中の店舗代表者が担当する店舗
+        $shops = Shop::where('owner_id', auth()->id())->get();
+
+        return view('owner.shops-list', compact('shops'));
+    }
+
+    // 店舗更新フォーム表示
+    public function edit($id)
+    {
+        $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
         $areas = Area::all();
         $genres = Genre::all();
-        return view('owner.shop-update', compact('shops', 'areas', 'genres'));
+
+        return view('owner.shop-update', compact('shop', 'areas', 'genres'));
     }
 
     // 店舗情報更新処理
-    public function update(Request $request, $id)
+    public function update(UpdateShopRequest $request, $id)
     {
         $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'area_id' => 'required|exists:areas,id',
-            'genre_id' => 'required|exists:genres,id',
-            'image' => 'nullable|file|image|mimes:jpeg,png|max:2048', // 画像は必須ではない
-        ]);
+        try {
+            $validatedData = $request->validated(); // バリデーションの実行
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \Log::error('バリデーションエラー', [
+                'errors' => $e->errors(),
+            ]);
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
 
+        // 更新処理
         $data = $request->only(['name', 'description', 'area_id', 'genre_id']);
-
-        // 画像がアップロードされた場合のみ処理
         if ($request->hasFile('image')) {
-            // 古い画像を削除
             if ($shop->image_url) {
                 \Storage::disk('public')->delete($shop->image_url);
             }
-            // 新しい画像を保存
             $data['image_url'] = $request->file('image')->store('shops', 'public');
         }
-
         $shop->update($data);
 
         return redirect()->route('owner.dashboard')->with('success', '店舗情報が更新されました。');
     }
+
 }

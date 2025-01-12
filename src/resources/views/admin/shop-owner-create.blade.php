@@ -11,7 +11,7 @@
         @csrf
         <div class="form-group">
             <label for="name">名前</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" required>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control">
             @error('name')
             <p class="error-message">{{ $message }}</p>
             @enderror
@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control" required>
+            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control">
             @error('email')
             <p class="error-message">{{ $message }}</p>
             @enderror
@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label for="password">パスワード</label>
-            <input type="password" id="password" name="password" class="form-control" required>
+            <input type="password" id="password" name="password" class="form-control">
             @error('password')
             <p class="error-message">{{ $message }}</p>
             @enderror
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="password_confirmation">パスワード確認</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
         </div>
 
         <div class="form-actions">

@@ -16,9 +16,9 @@
         <!-- 名前の編集 -->
         <div class="form-group">
             <label for="name">名前</label>
-            <input type="text" id="name" name="name" value="{{ old('name', $shopOwner->name) }}" class="form-control @error('name') is-invalid @enderror" required>
+            <input type="text" id="name" name="name" value="{{ old('name', $shopOwner->name) }}" class="form-control @error('name') is-invalid @enderror">
             @error('name')
-            <div class="invalid-feedback">
+            <div class="error-message">
                 {{ $message }}
             </div>
             @enderror
@@ -27,9 +27,9 @@
         <!-- メールアドレスの編集 -->
         <div class="form-group">
             <label for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" value="{{ old('email', $shopOwner->email) }}" class="form-control @error('email') is-invalid @enderror" required>
+            <input type="email" id="email" name="email" value="{{ old('email', $shopOwner->email) }}" class="form-control @error('email') is-invalid @enderror">
             @error('email')
-            <div class="invalid-feedback">
+            <div class="error-message">
                 {{ $message }}
             </div>
             @enderror
@@ -50,7 +50,7 @@
                 @endforeach
             </div>
             @error('shops.*')
-            <div class="invalid-feedback">
+            <div class="error-message">
                 {{ $message }}
             </div>
             @enderror

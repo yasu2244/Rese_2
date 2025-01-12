@@ -84,14 +84,13 @@
     background-color: #6c757d;
     color: #fff;
     border: none;
-    padding: 10px 35px;
+    padding: 15px 35px 8px 35px;
 }
 
 .btn-secondary:hover {
     background-color: #5a6268;
 }
 
-/* レスポンシブデザイン */
 @media (max-width: 768px) {
     .main {
         max-width: 90%;

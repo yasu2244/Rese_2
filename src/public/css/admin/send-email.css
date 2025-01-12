@@ -51,7 +51,6 @@ form .form-group textarea:focus {
 
 form .form-group textarea {
     resize: vertical;
-    margin-bottom: 25px;
 }
 
 /* ボタン */
@@ -93,6 +92,13 @@ form .form-group textarea {
 .btn-back:hover {
     background-color: #5a6268;
 }
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 
 @media (max-width: 768px) {
     .main {

@@ -11,11 +11,17 @@
         @csrf
         <div class="form-group">
             <label for="subject">件名</label>
-            <input type="text" id="subject" name="subject" required>
+            <input type="text" id="subject" name="subject" value="{{ old('subject') }}">
+            @error('subject')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         <div class="form-group">
             <label for="message">本文</label>
-            <textarea id="message" name="message" rows="15" required></textarea>
+            <textarea id="message" name="message" rows="15">{{ old('message') }}</textarea>
+            @error('message')
+                <p class="error-message">{{ $message }}</p>
+            @enderror
         </div>
         <div class="button-group">
             <button type="submit" class="btn btn-submit">送信</button>
@@ -24,3 +30,4 @@
     </form>
 </div>
 @endsection
+

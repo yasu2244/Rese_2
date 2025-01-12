@@ -13,7 +13,7 @@ class UpdateReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return true; // 編集時に認可のチェックが必要であれば、ここで設定します
+        return true;
     }
 
     /**

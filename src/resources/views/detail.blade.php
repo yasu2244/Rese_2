@@ -63,7 +63,7 @@
         <input type="hidden" name="shop_id" value="{!! $shop->id !!}">
         <input class="reservation-card__date-input" type="date" value="{!! $today !!}" name="date" id="date" />
         <div class="reservation-card__pull-down">
-          <select name="time" id="time" required>
+          <select name="time" id="time">
               <option value="">時間を選択してください</option>
               @foreach ($timeSlots as $time)
                   <option value="{{ $time }}">{{ $time }}</option>
@@ -71,7 +71,7 @@
           </select>
         </div>
         <div class="reservation-card__pull-down">
-          <select class="number-form" name="user_num" id="user_num" required>
+          <select class="number-form" name="user_num" id="user_num">
             <option value="">人数を選択してください</option>
             @for ($i = 1; $i <= 10; $i++)
                 <option value="{{ $i }}">{{ $i }}人</option>

@@ -12,9 +12,10 @@ Route::middleware(['auth', 'role:shop_owner'])->prefix('owner')->name('owner.')-
 
     // 店舗関連
     Route::prefix('shops')->name('shops.')->group(function () {
+        Route::get('list', [ShopController::class, 'index'])->name('list');
         Route::get('create', [ShopController::class, 'create'])->name('create'); // 店舗作成ページ
         Route::post('create', [ShopController::class, 'store'])->name('store'); // 店舗作成処理
-        Route::get('update', [ShopController::class, 'edit'])->name('update'); // 店舗更新ページ
+        Route::get('update/{id}', [ShopController::class, 'edit'])->name('update'); // 店舗更新ページ
         Route::put('update/{id}', [ShopController::class, 'update'])->name('update.process'); // 店舗更新処理
     });
 

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Review;
+use App\Http\Requests\StoreShopOwnerRequest;
+use App\Http\Requests\UpdateShopOwnerRequest;
+use App\Http\Requests\SendEmailRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -33,15 +36,8 @@ class AdminController extends Controller
     }
 
     // 店舗代表者を保存
-    public function storeShopOwner(Request $request)
+    public function storeShopOwner(StoreShopOwnerRequest $request)
     {
-        //requestフェイルを作成する
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -66,17 +62,11 @@ class AdminController extends Controller
     }
 
     // 店舗代表者を更新
-    public function updateShopOwner(Request $request, $id)
+    public function updateShopOwner(UpdateShopOwnerRequest $request, $id)
     {
         $shopOwner = User::findOrFail($id);
 
-        // バリデーション
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $shopOwner->id,
-            'shops' => 'nullable|array', // 複数選択可能な店舗ID
-            'shops.*' => 'exists:shops,id', // 各IDがshopsテーブルに存在するか確認
-        ]);
+        $validatedData = $request->validated();
 
         // ユーザー情報を更新
         $shopOwner->update([
@@ -182,13 +172,8 @@ class AdminController extends Controller
     }
 
     // お知らせメール送信処理
-    public function sendEmail(Request $request)
+    public function sendEmail(SendEmailRequest $request)
     {
-        $request->validate([
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-        ]);
-
         // メール送信処理
         Mail::raw($request->message, function ($message) use ($request) {
             $message->to('recipient_email@example.com') // 受信者のメールアドレスに置き換え
@@ -197,4 +182,5 @@ class AdminController extends Controller
 
         return redirect()->route('admin.dashboard')->with('success', 'メールを送信しました！');
     }
+
 }
