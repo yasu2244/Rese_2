@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -10,10 +11,12 @@ use App\Http\Requests\ReservationRequest;
 
 class ReservationsController extends Controller
 {
+    
     public function create(ReservationRequest $request)
     {
         try {
-            Reservation::create([
+            // **予約データを作成**
+            $reservation = Reservation::create([
                 'date' => $request['date'],
                 'time' => $request['time'],
                 'user_num' => $request['user_num'],
@@ -21,11 +24,27 @@ class ReservationsController extends Controller
                 'shop_id' => $request['shop_id'],
                 'qr_code' => Str::uuid(), 
             ]);
+    
+            // **仮の支払いデータを作成**
+            Payment::create([
+                'reservation_id' => $reservation->id,
+                'amount' => $reservation->user_num * 1000, // 1人あたり1000円
+                'status' => 'pending', // 未払い
+                'method' => 'credit_card', // ← デフォルト値
+                'stripe_payment_id' => null,
+                'qr_code_url' => null,
+            ]);
+    
+            \Log::info('支払い情報を作成しました:', ['reservation_id' => $reservation->id]);
+    
             return view('reservation-completion');
         } catch (\Throwable $th) {
+            \Log::error('予約作成エラー:', ['error' => $th->getMessage()]);
             return redirect('detail/' . $request['shop_id']);
         }
     }
+    
+    
 
     public function edit($reservation_id)
     {

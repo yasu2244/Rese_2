@@ -18,12 +18,12 @@ class CreateLikesTable extends Migration
             $table->unsignedBigInteger('shop_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
-            $table->foreign('shop_id')->references('id')->on('shops');
-            $table->foreign('user_id')->references('id')->on('users');
+    
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // onDelete('cascade') を追加
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *

@@ -8,9 +8,12 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentsController;
 
-Auth::routes(['verify' => true]); // メール認証を有効化
+Auth::routes([
+    'verify' => true,
+    'reset' => false, // デフォルトのリセット機能は無効化
+]);
 
 // 一般ユーザー向けルート
 Route::get('/', [ShopsController::class, 'index'])->name('root');
@@ -43,8 +46,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/review/{id}', [ReviewController::class, 'update'])->name('review.update');
     Route::delete('/review/{id}', [ReviewController::class, 'destroy'])->name('review.destroy');
 
-    Route::get('/payment', [PaymentController::class, 'showPaymentForm'])->name('payment.form');
-    Route::post('/payment', [PaymentController::class, 'processPayment'])->name('payment.process');
+    // 支払い関連（Stripe）
+    Route::get('/payment/list', [PaymentsController::class, 'index'])->name('payment.list');
+    Route::post('/payment/session', [PaymentsController::class, 'createSession'])->name('payment.session');
+    Route::get('/payment/success', [PaymentsController::class, 'success'])->name('payment.success');
+    Route::get('/payment/cancel', [PaymentsController::class, 'cancel'])->name('payment.cancel');
+    Route::get('/payment/qr/{reservation_id}', [PaymentsController::class, 'showQr'])->name('payment.qr.show');
+    Route::post('/payment/qr', [PaymentsController::class, 'createQrPayment'])->name('payment.qr.create');
+    Route::post('/payment/method', [PaymentsController::class, 'updatePaymentMethod'])->name('payment.method'); //支払い方法の変更API
 
 });
 

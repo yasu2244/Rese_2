@@ -1,13 +1,17 @@
 /* マイページ */
-.user-info {
+.mypage-header {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 85%;
     margin-bottom: 48px;
 }
 
-.username {
+.user-name {
     font-size: 32px;
+}
+
+a.list-btn {
+    margin-left: 10px;
 }
 
 .list-btn {
@@ -48,6 +52,17 @@
 .status__card__top {
     display: flex;
     align-items: center;
+}
+
+/* 日付表示 */
+td .date-year {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+td .date-mdw {
+    display: inline-block;
+    white-space: nowrap;
 }
 
 /* QRコードリンク */
@@ -166,28 +181,40 @@
     cursor: pointer;
 }
 
-/* レスポンシブ対応 */
 @media (max-width: 768px) {
-    .user-info {
+    .mypage-header {
         flex-direction: column;
         align-items: center;
         width: 100%;
         margin-bottom: 24px;
+        text-align: center;
     }
 
-    .username {
-        text-align: center;
-        margin-bottom: 16px;
+    .user-name h2 {
         font-size: 28px;
+        margin-bottom: 16px;
+    }
+
+    .mypage-link {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
     }
 
     .list-btn {
-        text-align: center;
+        width: auto;
+        padding: 10px 15px;
+        font-size: 14px;
     }
 
     .status, .likes {
         width: 100%;
         margin-bottom: 50px;
+    }
+
+    .status__ttl {
+        margin-top: 30px;
     }
 
     .status__card, .shop-card {
@@ -201,8 +228,15 @@
     }
 
     .status__card__bottom td {
-        width: auto;
         text-align: left;
+    }
+
+    td .date-year {
+        display: block;
+    }
+
+    td .date-mdw {
+        display: block;
     }
 
     .shop-card {

@@ -13,29 +13,29 @@ class ShopsController extends Controller
     public function index(Request $request)
     {
         $order = $request->query('order');
-
+    
         $query = Shop::query();
-
+    
         if ($order === 'random') {
             $query->inRandomOrder();
         } elseif ($order === 'high_rating') {
             $query->withSum('reviews as total_rating', 'rating')
-                ->orderByRaw('total_rating = 0, total_rating desc');
+                ->withCount('reviews')
+                ->orderByRaw('COALESCE(total_rating, 0) DESC, reviews_count DESC');
         } elseif ($order === 'low_rating') {
             $query->withSum('reviews as total_rating', 'rating')
-                ->orderByRaw('total_rating = 0, total_rating asc');
+                ->withCount('reviews')
+                ->orderByRaw('COALESCE(total_rating, 0) ASC, reviews_count ASC');
         }
-
-        $shops = $query->with('likes')->get();
-
+    
+        // 店舗情報を取得（エリア、ジャンル、いいね情報を含む）
+        $shops = $query->with('area', 'genre', 'likes')->get();
+    
         // ログイン中のユーザーの「いいね」を取得
-        $userLikes = [];
-        if (auth()->check()) {
-            $userLikes = auth()->user()->likes()->pluck('shop_id')->toArray();
-        }
-
+        $userLikes = auth()->check() ? auth()->user()->likes->pluck('id')->toArray() : [];
+    
         return view('index', compact('shops', 'userLikes'));
-    }
+    }    
 
     public function search(Request $request)
     {

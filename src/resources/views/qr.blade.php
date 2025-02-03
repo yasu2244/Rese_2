@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-<h1>QRコード</h1>
+<h2>QRコード</h2>
 <div class="qrcode">
     {!! $qr_code !!}
 </div>

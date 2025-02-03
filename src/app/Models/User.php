@@ -45,13 +45,13 @@ class User extends Authenticatable implements MustVerifyEmail
     // ユーザーの予約リレーション
     public function reservations()
     {
-        return $this->belongsToMany(Shop::class, 'reservations')->withPivot('id', 'date', 'time', 'user_num');
+        return $this->hasMany(Reservation::class); // ユーザーが複数の予約を持つ
     }
 
     // ユーザーのお気に入りリレーション
     public function likes()
     {
-        return $this->belongsToMany(Shop::class, 'likes');
+        return $this->belongsToMany(Shop::class, 'likes', 'user_id', 'shop_id');
     }
 
     // 店舗代表者が管理する店舗リレーション

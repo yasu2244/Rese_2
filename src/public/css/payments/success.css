@@ -1,0 +1,81 @@
+.main {
+    text-align: center;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #305dff;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.btn-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ボタンの共通スタイル */
+.btn {
+    display: inline-block;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 支払い成功ボタン */
+.btn-success {
+    background-color: #305dff;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #274bcc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* マイページへ戻るボタン */
+.btn-mypage {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-mypage:hover {
+    background-color: #218838;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .main {
+        margin: 30px auto;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 12px 30px;
+    }
+}

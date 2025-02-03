@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreShopRequest;
-use App\Http\Requests\UpdateShopRequest;
+use App\Http\Requests\Owner\StoreShopRequest;
+use App\Http\Requests\Owner\UpdateShopRequest;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;

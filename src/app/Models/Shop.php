@@ -25,9 +25,9 @@ class Shop extends Model
 
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsToMany(User::class, 'likes', 'shop_id', 'user_id');
     }
-
+    
     public static function getShops()
     {
         $shops = Shop::with('area', 'genre')->with(

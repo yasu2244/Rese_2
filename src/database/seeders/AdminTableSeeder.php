@@ -18,7 +18,7 @@ class AdminTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin User', // 管理者名
             'email' => 'admin@example.com', // メールアドレス
-            'password' => Hash::make('admin1234'), // パスワード
+            'password' => Hash::make('1234admin1'), // パスワード
             'role_id' => 2, // 'admin' ロールのID (役割に応じて調整)
             'created_at' => now(),
             'updated_at' => now(),
