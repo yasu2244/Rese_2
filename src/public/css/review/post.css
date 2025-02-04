@@ -89,7 +89,6 @@
     text-align: center;
 }
 
-
 .review-form form {
     display: flex;
     flex-direction: column;
@@ -108,7 +107,6 @@
     margin-bottom: 10px;
     text-align: left;
 }
-
 
 .star-rating {
     direction: rtl;
@@ -177,7 +175,13 @@
     border-radius: 5px;
 }
 
-.submit-btn {
+/* ボタンの基本スタイル */
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
     width: 30%;
     background-color: #fff;
     padding: 10px;
@@ -186,11 +190,20 @@
     cursor: pointer;
     font-size: 16px;
     position: absolute; /* 絶対配置で下に固定 */
-    bottom: -70px; /* 余白を確保してボタンを下に設置 */
+    bottom: -70px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 20px;
     transition: background-color 0.3s ease;
+}
+
+.submit-btn {
+    bottom: -70px; 
+}
+
+.back-btn {
+    text-decoration: none;
+    bottom: -120px;
 }
 
 .submit-btn:hover {
@@ -202,4 +215,34 @@
     font-size: 12px;
     text-align: center;
     margin-top: 5px;
+}
+
+@media screen and (max-width: 768px) {
+
+    .review-container {
+        flex-direction: column;
+        margin: 10px 0;
+    }
+
+    .review-left, 
+    .review-form {
+        flex-basis: 100%;
+        padding: 10px;
+    }
+
+    /* 境界線非表示 */
+    .review-container::before {
+        display: none;
+    }
+
+    .btn {
+        width: 70%;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .submit-btn {
+        margin-bottom: 25px;
+    }
+
 }
