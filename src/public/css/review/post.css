@@ -206,7 +206,8 @@
     bottom: -120px;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.back-btn:hover {
     background-color: #d1e7ff;
 }
 
@@ -236,10 +237,14 @@
     }
 
     .btn {
-        width: 70%;
+        width: 100%;
         margin: 10px auto;
+        padding: 10px 15px;
         display: block;
+        position: static;    /* 絶対配置を解除 */
+        transform: none;     /* 変形も解除 */
     }
+
 
     .submit-btn {
         margin-bottom: 25px;

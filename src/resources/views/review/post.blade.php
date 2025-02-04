@@ -8,7 +8,7 @@
 <div class="review-container">
     <!-- 左カラム: タイトルと店舗情報 -->
     <div class="review-left">
-        <h1 class="review-title">今回のご利用はいかがでしたか？</h1>
+        <h2 class="review-title">今回のご利用はいかがでしたか？</h2>
 
         <div class="shop-card">
             <img class="shop-card__img" src="{{ asset($shop->image_url) }}" alt="shop-img" />
