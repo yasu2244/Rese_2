@@ -99,8 +99,6 @@ class AdminController extends Controller
         return redirect()->route('admin.shop_owners.list')->with('success', '店舗代表者を更新しました。');
     }
 
-
-
     // 店舗代表者を削除
     public function destroyShopOwner($id)
     {
@@ -125,7 +123,7 @@ class AdminController extends Controller
         $stores = $shopOwner->shops;
 
         // ビューにデータを渡す
-        return view('admin.shop-owner-stores', compact('shopOwner', 'stores'));
+        return view('admin.shop-owner-shop-list', compact('shopOwner', 'stores'));
     }
 
     // 店舗詳細情報を表示

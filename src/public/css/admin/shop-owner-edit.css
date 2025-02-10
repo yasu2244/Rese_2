@@ -1,3 +1,4 @@
+/* 店舗代表者の編集 */
 .main {
     max-width: 700px;
     margin: 0 auto;
@@ -123,7 +124,6 @@ button.btn-danger:hover {
     margin-top: 20px;
 }
 
-/* エラーメッセージ */
 .error-message {
     color: #dc3545;
     font-size: 12px;

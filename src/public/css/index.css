@@ -147,93 +147,43 @@ select:focus {
     fill: #eee;
 }
 
-/* タブレットサイズ（768px〜1023px） */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .shops {
-        width: calc(100vw - 150px);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .search {
-        width: 500px;
-    }
-
-    .shop-card {
-        width: 320px;
-        height: 280px;
-    }
-
-    .search__btn {
-        width: 100%;
-        font-size: 14px;
-    }
-
+@media screen and (max-width: 768px) {
     .header {
-        width: 85%;
-    }
-}
-
-/* スマートフォンサイズ（600px以下） */
-@media (max-width: 600px) {
-    .shops {
-        width: 100vw;
-        display: flex;
         flex-direction: column;
-        margin: 0 auto;
+        align-items: center;
+      }
+    
+    .search-container {
+        margin-top: 45px;
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
     }
-
-    .shop-card {
-        width: 90%;
-        margin: 10px 0;
-        height: auto;
-    }
-
-    .shop-card__content {
-        padding: 15px;
-    }
-
-    .shop-card__content__ttl {
-        font-size: 16px;
-    }
-
-    .shop-card__content__txt {
-        font-size: 10px;
-    }
-
-    .shop-card__content__link {
-        padding: 5px 10px;
-    }
-
+    
     .search {
         width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 10px;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 5px 3px;
     }
 
     .search__pull-down select {
-        width: 45%;
-        margin-bottom: 10px;
+        width: 70px;
+        height: 28px;
+        padding: 5px 15px;
+        font-size: 8px;
     }
 
     .search__keyword {
-        width: calc(100% - 5px);
-        margin-bottom: 10px;
+        width: 100%;
+        font-size: 8px;
+        padding-left: 30px;
     }
 
     .search__btn {
-        width: 50%;
-        font-size: 10px;
+        width: 50px;
+        font-size: 8px;
+        padding: 5px;
     }
-
-    .menu {
-        padding-top: 20vh;
-    }
-
-    .menu__item {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
+    
 }

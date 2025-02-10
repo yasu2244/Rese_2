@@ -9,19 +9,20 @@ use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ShopController extends Controller
 {
     // 店舗作成フォーム表示
-    public function create()
+    public function createShop()
     {
         $areas = Area::all();
         $genres = Genre::all();
         return view('owner.shop-create', compact('areas', 'genres'));
     }
 
-    // 店舗情報保存処理
-    public function store(StoreShopRequest $request)
+    // 店舗作成処理
+    public function storeShop(StoreShopRequest $request)
     {
         $imagePath = $request->file('image')->store('shops', 'public');
 
@@ -39,7 +40,7 @@ class ShopController extends Controller
     }
 
     // 担当店舗一覧ページ
-    public function index()
+    public function listShop()
     {
         $shops = Shop::where('owner_id', auth()->id())->get();
 
@@ -47,7 +48,7 @@ class ShopController extends Controller
     }
 
     // 店舗更新フォーム表示
-    public function edit($id)
+    public function editShop($id)
     {
         $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
         $areas = Area::all();
@@ -57,7 +58,7 @@ class ShopController extends Controller
     }
 
     // 店舗情報更新処理
-    public function update(UpdateShopRequest $request, $id)
+    public function updateShop(UpdateShopRequest $request, $id)
     {
         $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
 

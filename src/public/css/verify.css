@@ -70,7 +70,6 @@ form {
     text-align: center;
 }
 
-/* --- レスポンシブデザイン: 768px以下の画面サイズに適用 --- */
 @media (max-width: 768px) {
     .container {
         max-width: 90%;

@@ -182,6 +182,11 @@ td .date-mdw {
 }
 
 @media (max-width: 768px) {
+    .flex.between.mypage {
+        flex-direction: column;
+        align-items: center;
+      }
+
     .mypage-header {
         flex-direction: column;
         align-items: center;

@@ -1,4 +1,4 @@
-/* 詳細 */
+/* 店舗詳細ページ */
 .shop-detail {
     width: 50%;
 }
@@ -140,17 +140,16 @@
     margin-bottom: 20px;
     color: red;
     font-size: 14px;
-  }
+}
   
-  .error__lists {
+.error__lists {
     list-style: none;
     padding: 0;
-  }
+}
   
-  .error__item {
+.error__item {
     margin-bottom: 5px;
-  }
-  
+}
   
 .reservation-card__date-input {
     padding: 7px 30px 7px 10px;
@@ -212,101 +211,22 @@
     cursor: pointer;
 }
 
-/* ノートPCサイズ向け（1024px以上） */
-@media (min-width: 1024px) {
-    .main {
-        display: flex;
-        justify-content: space-between;
-    }
+@media screen and (max-width: 768px) {
 
-    .shop-detail, .reservation {
-        width: 45%;
-    }
-
-    .reservation-card {
-        width: 80%;
-    }
-}
-
-/* タブレットサイズ（768px〜1023px） */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .shop-detail__link {
-        margin-right: 20px;
-    }
-
-    .shop-detail__ttl {
-        text-align: center;
-        margin-left: 0;
-        padding-top: 7px;
-    }
-
-    .reservation-card {
-        width: 80%;
-        height: 65vh;
-        font-size: 14px;
-    }
-}
-
-/* スマートフォンサイズ向け（600px以下） */
-@media (max-width: 600px) {
-    .main {
+    .main.flex {
         flex-direction: column;
-        align-items: center;
     }
 
-    .shop-detail, .reservation {
-        width: 90%;
-        margin-bottom: 20px;
-    }
-
-    .shop-detail__link {
-        margin-right: 20px;
-    }
-
-    .shop-detail__ttl {
-        font-size: 24px;
-        text-align: center;
-        margin-left: 0;
-        padding-top: 7px;
-    }
-
-    .shop-detail__img {
-        margin-top: 20px;
-    }
-
-    .shop-detail__txt {
-        margin-top: 15px;
-        font-size: 16px;
-        line-height: 20px;
+    .shop-detail,
+    .reservation {
+        width: 100%;
     }
 
     .reservation-card {
-        width: 100%;
-        height: 60vh;
-    }
-
-    .reservation-card__content {
-        padding: 20px;
-    }
-
-    .reservation-card__content__ttl {
-        font-size: 20px;
-    }
-
-    .reservation-card__pull-down select {
-        width: 100%;
-    }
-
-    .reservation-details {
-        margin: 20px 0 0;
-        padding: 15px;
+        width: 95%;
     }
 
     .reservation-details p span {
-        margin-left: 20px;
-    }
-
-    .reservation-btn {
-        padding: 15px 0;
+        font-size: 12px;
     }
 }

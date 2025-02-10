@@ -1,4 +1,4 @@
-/* QRコード全体のレイアウト */
+/* QRコード */
 .qrcode {
     display: flex;
     justify-content: center;

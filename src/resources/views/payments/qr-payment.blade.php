@@ -11,7 +11,6 @@
     {!! $qr_code !!}
 </div>
 
-<!-- 決済確認ボタン -->
 <div class="btn-container">
     <button id="check-payment-status" class="btn">支払い完了を確認</button>
 </div>

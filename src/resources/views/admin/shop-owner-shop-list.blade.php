@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/admin/shop-owner-stores.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/shop-owner-shop-list.css') }}">
 @endsection
 
 @section('main')
 <div class="main">
-    <h1>{{ $shopOwner->name }} さんの担当店舗一覧</h1>
+    <h2>{{ $shopOwner->name }} さんの担当店舗一覧</h2>
     <table>
         <thead>
             <tr>

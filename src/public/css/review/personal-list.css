@@ -1,3 +1,21 @@
+/* ユーザー個人の口コミ投稿リスト */
+.review-header {
+    width: 60%;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.back-btn {
+    display: inline-block;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px gray;
+}
+
 .review-item {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -9,7 +27,7 @@
 .review-item h2 {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 25px;/
+    margin-bottom: 25px;
 }
 
 .rating {
@@ -69,3 +87,35 @@ p {
     opacity: 0.8;
 }
 
+@media (max-width: 768px) {
+    .review-header {
+        width: 90%;
+    }
+
+    .review-item {
+        width: 90%;
+        padding: 10px;
+    }
+    
+    .review-item h2 {
+        font-size: 20px;
+    }
+    
+    .rating {
+        font-size: 1.3em;
+    }
+    
+    p {
+        font-size: 13px;
+    }
+    
+    .buttons {
+        text-align: center;
+    }
+    
+    .btn-edit,
+    .btn-danger {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}

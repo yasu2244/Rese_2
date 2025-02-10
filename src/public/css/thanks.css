@@ -1,4 +1,4 @@
-/* サンクスページの基本デザイン */
+/* (予約)サンクスページ */
 .thanks {
     padding: 120px 100px 0;
     background-color: #f9f9f9;
@@ -42,41 +42,23 @@
     background: #003bff;
 }
 
-/* ノートPCサイズ向け（1024px以上） */
-@media (min-width: 1024px) {
+@media (max-width: 768px) {
     .thanks {
-        padding: 150px 150px 0;
+        padding: 60px 20px 0;
     }
-
+    
     .thanks-card {
-        width: 500px;
-        padding: 120px 40px;
+        width: 80%;
+        padding: 60px 15px;
     }
-
+    
     .thanks-card__txt {
-        font-size: 24px;
+        font-size: 18px;
+        margin-bottom: 24px;
     }
-}
-
-/* スマートフォンサイズ向け（600px以下） */
-@media (max-width: 600px) {
-    .thanks {
-        padding: 50px 20px 0;
-    }
-
-    .thanks-card {
-        width: 100%;
-        margin-top: 30px;
-        padding: 60px 20px;
-    }
-
-    .thanks-card__txt {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
+    
     .thanks-card__link {
-        padding: 12px 25px;
         font-size: 14px;
+        padding: 8px 16px;
     }
 }

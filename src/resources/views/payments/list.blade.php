@@ -6,7 +6,11 @@
 
 @section('main')
 <div class="main">
-  <h2 class="page-title">支払いページ</h2>
+  <div class="list-header">
+    <a class="back-btn" href="{{ route('mypage') }}">＜</a>
+    <h2 class="list-title">支払いページ</h2>
+  </div>
+
   @foreach($unpaidReservations as $reservation)
   <div class="reservation">
     <p>予約ID: {{ $reservation->id }}</p>

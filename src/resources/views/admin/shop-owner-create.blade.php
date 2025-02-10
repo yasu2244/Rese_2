@@ -6,7 +6,7 @@
 
 @section('main')
 <div class="main">
-    <h1>店舗代表者作成</h1>
+    <h2>店舗代表者作成</h2>
     <form action="{{ route('admin.shop_owners.store') }}" method="post" class="form">
         @csrf
         <div class="form-group">

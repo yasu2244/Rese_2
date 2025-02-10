@@ -1,3 +1,4 @@
+/* 店舗代表者作成 */
 .main {
     max-width: 600px;
     margin: 30px auto;
@@ -8,7 +9,7 @@
 }
 
 /* タイトル */
-.main h1 {
+.main h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
     text-align: center;
@@ -112,7 +113,11 @@
     }
 
     .btn {
+        margin-top: 10px;
         width: 100%;
-        padding: 10px 0;
+    }
+
+    .btn-secondary {
+        padding: 15px 35px;
     }
 }
