@@ -35,6 +35,8 @@ class StoreShopRequest extends FormRequest
             'image.image' => 'アップロード可能な形式はjpegまたはpngのみです。',
             'image.mimes' => '画像形式はjpegまたはpngである必要があります。',
             'image.max' => '画像サイズは2MB以内である必要があります。',
+            'image.uploaded'     => 'アップロードに失敗しました。画像サイズは2MB以内である必要があります。', 
+                //phpのデフォルトの設定でupload_max_filesize が 2MBとなっている
         ];
     }
 }

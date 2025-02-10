@@ -57,7 +57,7 @@ class ShopController extends Controller
         return view('owner.shop-update', compact('shop', 'areas', 'genres'));
     }
 
-    // 店舗情報更新処理
+    // 店舗情報更新
     public function updateShop(UpdateShopRequest $request, $id)
     {
         $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
