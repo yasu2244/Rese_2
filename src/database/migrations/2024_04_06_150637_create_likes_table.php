@@ -20,7 +20,7 @@ class CreateLikesTable extends Migration
             $table->timestamps();
     
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // onDelete('cascade') を追加
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     

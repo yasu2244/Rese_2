@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class PaymentsController extends Controller
 {
-    /**
-     * 未払いの予約一覧ページ
-     */
+    // 未払いの予約一覧ページ
     public function index()
     {
         $user = auth()->user();
@@ -30,9 +28,7 @@ class PaymentsController extends Controller
         return view('payments.list', compact('unpaidReservations'));
     }
 
-    /**
-     * 予約情報の取得（支払い情報と一緒に取得）
-     */
+    // 予約情報の取得（支払い情報と一緒に取得）
     private function getReservation($reservationId)
     {
         $reservation = Reservation::where('id', $reservationId)
@@ -51,9 +47,7 @@ class PaymentsController extends Controller
         return $reservation;
     }
 
-    /**
-     * クレジットカード決済用の支払いセッション作成
-     */
+    // クレジットカード決済用の支払いセッション作成
     public function createSession(Request $request)
     {
         try {
@@ -89,9 +83,7 @@ class PaymentsController extends Controller
         }
     }
 
-    /**
-     * QRコード決済ページの表示
-     */
+    // QRコード決済ページの表示
     public function showQr($reservationId)
     {
         try {
@@ -129,9 +121,7 @@ class PaymentsController extends Controller
     }
     
 
-    /**
-     * 支払い方法の変更
-     */
+    // 支払い方法の変更
     public function updatePaymentMethod(Request $request)
     {
         try {
@@ -160,9 +150,7 @@ class PaymentsController extends Controller
         }
     }
 
-    /**
-     * 支払い成功時の処理
-     */
+    // 支払い成功時の処理
     public function success(Request $request)
     {
         try {
@@ -182,9 +170,7 @@ class PaymentsController extends Controller
     }
     
 
-    /**
-     * 支払い状況の確認
-     */
+    // 支払い状況の確認
     public function checkPaymentStatus($reservationId)
     {
         $payment = Payment::where('reservation_id', $reservationId)->first();

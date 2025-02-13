@@ -30,7 +30,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 // 認証待ち画面
 Route::get('/verify-email', [VerificationController::class, 'show'])
     ->middleware('guest')
-    ->name('verification.notice');;
+    ->name('verification.notice');
 
 // メール認証リンクの処理
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, '__invoke'])

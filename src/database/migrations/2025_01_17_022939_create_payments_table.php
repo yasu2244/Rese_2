@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('reservation_id');    // 予約との関連
             $table->string('stripe_payment_id')->nullable(); // Stripe支払いID
-            $table->integer('amount');                       // 支払い金額（`total_amount` を移動）
+            $table->integer('amount');
             $table->enum('status', ['pending', 'succeeded', 'failed'])->default('pending'); // 支払いステータス
             $table->enum('method', ['credit_card', 'qr_code'])->default('credit_card');     // 支払い方法
             $table->string('qr_code_url')->nullable();       // 支払い用QRコードURL

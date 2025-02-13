@@ -63,7 +63,7 @@ class ShopController extends Controller
         $shop = Shop::where('id', $id)->where('owner_id', auth()->id())->firstOrFail();
 
         try {
-            $validatedData = $request->validated(); // バリデーションの実行
+            $validatedData = $request->validated(); 
         } catch (\Illuminate\Validation\ValidationException $e) {
             \Log::error('バリデーションエラー', [
                 'errors' => $e->errors(),

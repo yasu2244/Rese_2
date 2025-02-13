@@ -84,7 +84,6 @@ textarea.form-control {
     font-size: 14px;
 }
 
-/* ボタンスタイル */
 .button-group {
     display: flex;
     justify-content: space-between;

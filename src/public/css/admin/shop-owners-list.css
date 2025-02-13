@@ -128,13 +128,13 @@
 @media (max-width: 425px) {
     .actions {
         display: flex;
-        flex-wrap: nowrap; /* ボタンを横並びに固定 */
+        flex-wrap: nowrap;
         justify-content: space-between;
         gap: 4px;
     }
 
     .actions .btn {
-        white-space: nowrap; /* テキストの折り返しを防ぐ */
+        white-space: nowrap;
         padding: 5px 8px;
         font-size: 10px;
         flex-grow: 1;

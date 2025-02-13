@@ -15,7 +15,7 @@ class ReservationsController extends Controller
     public function create(ReservationRequest $request)
     {
         try {
-            // **予約データを作成**
+            // 予約データを作成
             $reservation = Reservation::create([
                 'date' => $request['date'],
                 'time' => $request['time'],
@@ -25,7 +25,7 @@ class ReservationsController extends Controller
                 'qr_code' => Str::uuid(), 
             ]);
     
-            // **仮の支払いデータを作成**
+            // 仮の支払いデータを作成
             Payment::create([
                 'reservation_id' => $reservation->id,
                 'amount' => $reservation->user_num * 1000, // 1人あたり1000円

@@ -14,7 +14,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        // rolesテーブルに初期データを挿入
         DB::table('roles')->insert([
             ['name' => 'user'],
             ['name' => 'admin'],

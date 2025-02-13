@@ -16,7 +16,6 @@
             <p class="rating">{{ str_repeat('★', $review->rating) }}</p> <!-- $userReview -> $review に変更 -->
             <p class="comment">{{ $review->comment ? $review->comment : 'コメントなし' }}</p>
 
-            <!-- 画像の表示 -->
             @if ($review->image_path)
                 <div class="review-image">
                     <img src="{{ asset('storage/' . $review->image_path) }}" alt="Review Image" width="200">
