@@ -169,7 +169,8 @@ MAIL_PASSWORDについて<br />
 ```
 php artisan tinker
 ```
-シーディング後だと管理者ユーザーが追加されているためID2のユーザーを指定しています。
+シーディング後だと管理者ユーザーが追加されているためID2のユーザーを指定しています。<br />
+なのでシーディング後に一般ユーザーを作成して行ってください。
 ```
 $user = App\Models\User::first(2);
 ```
@@ -178,7 +179,7 @@ $user->sendEmailVerificationNotification();
 ```
 以上でメールが送信されます。<br />
 
-次にストレージのシンボリックリンクを作成。
+次にストレージのシンボリックリンクを作成。画像が正常に表示されます。
 ```
 php artisan storage:link
 ```
