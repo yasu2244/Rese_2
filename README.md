@@ -104,7 +104,7 @@ QRコードのページもありますがクレジットカード決済に繋が
 ![tabledata3](https://github.com/user-attachments/assets/05d5b210-bd68-46ed-be6d-418a9e82b50d)
 
 ## ER図
-![Rese_er](https://github.com/yasu2244/Rese/assets/76992290/490a3934-9905-434f-9b18-5d1b8d1e39c7)
+![Rese_er](https://github.com/user-attachments/assets/cff04f8a-cf3a-49c5-a840-53736d8d3313)
 
 ##環境構築
 ローカル環境下においてのテスト環境構築手順を示します。
