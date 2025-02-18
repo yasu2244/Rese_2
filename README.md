@@ -164,7 +164,9 @@ MAIL_PASSWORDについて<br />
 * Googleアカウントのセキュリティ設定ページ に移動します。
 * 「2段階認証プロセス」を有効にします。
 * 「アプリ パスワード」を選択し、メールに使用するパスワードを生成します。
-* 生成されたパスワードを .env の MAIL_PASSWORD に設定します。
+* 「アプリ パスワード」が表示されない場合は検索欄から探してください。
+* 生成されたパスワードを .env の MAIL_PASSWORD に設定します。<br />
+この時スベースがあるとエラーになるので注意してください。(正しい例: aaaabbbbccccdddd)
 メール送信機能が正常に動くかの確認
 ```
 php artisan tinker
@@ -172,7 +174,8 @@ php artisan tinker
 シーディング後だと管理者ユーザーが追加されているためID2のユーザーを指定しています。<br />
 なのでシーディング後に一般ユーザーを作成して行ってください。
 ```
-$user = App\Models\User::first(2);
+$user = App\Models\User::find(2);
+
 ```
 ```
 $user->sendEmailVerificationNotification();
