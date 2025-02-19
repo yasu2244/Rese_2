@@ -169,7 +169,6 @@ class PaymentsController extends Controller
         }
     }
     
-
     // 支払い状況の確認
     public function checkPaymentStatus($reservationId)
     {
@@ -180,5 +179,20 @@ class PaymentsController extends Controller
         }
 
         return response()->json(['status' => $payment->status]);
+    }
+
+    public function cancel()
+    {
+        $user = auth()->user();
+
+        // 未払いの予約を取得
+        $unpaidReservations = Reservation::where('user_id', $user->id)
+            ->whereDoesntHave('payment', function ($query) {
+                $query->where('status', 'succeeded');
+            })
+            ->with('payment')
+            ->get();
+
+        return view('payments.list', compact('unpaidReservations'));
     }
 }
