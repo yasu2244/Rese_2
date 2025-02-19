@@ -7,7 +7,10 @@
     <h1>本日のご予約</h1>
     <p>以下のご予約があります。</p>
     <p><strong>店舗名:</strong> {{ $reservation->shop->name }}</p>
-    <p><strong>日時:</strong> {{ \Carbon\Carbon::parse($reservation->date)->format('Y年m月d日 H:i') }}</p>
+    <p><strong>日時:</strong> 
+        {{ $reservation->date->format('Y年m月d日') }} {{ $reservation->time->format('H:i') }}
+    </p>
+
     <p>お越しをお待ちしております！</p>
     <a href="{{ route('shop.detail', ['shop_id' => $reservation->shop->id]) }}" 
        style="
