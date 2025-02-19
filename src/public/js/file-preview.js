@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const imageInput = document.getElementById('images'); // inputのID修正
+    const imageInput = document.getElementById('image');
     const dropArea = document.getElementById('drop-area');
     const imagePreview = document.getElementById('image-preview');
     const uploadText = document.getElementById('upload-text');

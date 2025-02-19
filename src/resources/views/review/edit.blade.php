@@ -97,7 +97,10 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <button type="submit" class="btn submit-btn">口コミを編集</button>
+            <div class="button-group">
+                <button type="submit" class="btn submit-btn">口コミを編集</button>
+                <a href="{{ route('shop.detail', ['shop_id' => $shop->id]) }}" class="btn back-btn">戻る</a>
+            </div>
         </form>
     </div>
 </div>
