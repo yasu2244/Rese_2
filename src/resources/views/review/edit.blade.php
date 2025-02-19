@@ -77,7 +77,7 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <<div class="image-upload" id="image-upload-area">
+            <div class="image-upload" id="image-upload-area">
                 <h2>画像の追加</h2>
                 <div class="image-drop-area" id="drop-area">
                     <!-- 既存の画像がある場合にプレビューとして表示 -->
@@ -97,7 +97,7 @@
                 <div class="error-message">{{ $message }}</div>
             @enderror
 
-            <button type="submit" class="submit-btn">口コミを編集</button>
+            <button type="submit" class="btn submit-btn">口コミを編集</button>
         </form>
     </div>
 </div>

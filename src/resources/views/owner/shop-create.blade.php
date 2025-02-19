@@ -60,7 +60,7 @@
                 <div class="image-upload" id="image-upload-area">
                     <label for="image" class="label">画像アップロード (jpegまたはpng形式のみ)</label>
                     <div class="image-drop-area" id="drop-area">
-                        <input type="file" name="image" id="images" class="image-input" accept=".jpeg,.jpg,.png" style="display:none;">
+                        <input type="file" name="image" id="image" class="image-input" accept=".jpeg,.jpg,.png" style="display:none;">
                         <p id="upload-text">クリックして写真を追加<br>またはドラッグアンドドロップ</p>
                         <div id="image-preview" class="image-preview"></div>
                     </div>
