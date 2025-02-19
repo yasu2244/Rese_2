@@ -166,28 +166,52 @@ MAIL_PASSWORDについて<br />
 * 「アプリ パスワード」を選択し、メールに使用するパスワードを生成します。
 * 「アプリ パスワード」が表示されない場合は検索欄から探してください。
 * 生成されたパスワードを .env の MAIL_PASSWORD に設定します。<br />
-この時スベースがあるとエラーになるので注意してください。(正しい例: aaaabbbbccccdddd)
-メール送信機能が正常に動くかの確認
-```
-php artisan tinker
-```
-シーディング後だと管理者ユーザーが追加されているためID2のユーザーを指定しています。<br />
-なのでシーディング後に一般ユーザーを作成して行ってください。
-```
-$user = App\Models\User::find(2);
-
-```
-```
-$user->sendEmailVerificationNotification();
-```
-以上でメールが送信されます。<br />
+この時スベースがあるとエラーになるので注意してください。(正しい例: aaaabbbbccccdddd)<br />
+これでユーザー登録をした際認証メールが送信されます。
 
 次にストレージのシンボリックリンクを作成。画像が正常に表示されます。
 ```
 php artisan storage:link
 ```
+リマインダー機能の確認
+* /src/app/Http/Kernel.php内に毎朝8時に通知を送るように設定してあります。<br />
+お好みで時間を変更してください。
+```
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('reminders:send')->dailyAt('08:00');
+}
+```
+* リマインダー機能のテストの方法
+ログインした後に予約を作成し、phpコンテナ内で以下のコマンドを実行すると<br />
+登録したアドレスにメールが送信されます。
+```
+php artisan tinker
+```
+```
+$reservation = \App\Models\Reservation::find(1);
+```
+```
+$user = $reservation->user;
+```
+```
+$user->notify(new \App\Notifications\TodayReservationReminder($reservation));
+```
+Stripeの実装
+まずStripeのアカウントを作成し、APIキーを取得する必要があります。<br />
+### 1. Stripeアカウントの作成
+1. [Stripe公式サイト](https://dashboard.stripe.com/register) にアクセスし、新規アカウントを作成。
+2. ダッシュボードにログイン。
 
+### 2. APIキーの取得
+1. Stripeダッシュボードで「開発者」→「APIキー」に移動。
+2. 公開可能キー（Publishable key）と シークレットキー（Secret key）を取得。
+3. `.env` ファイルに以下のように設定。
+```
+STRIPE_KEY=your_stripe_public_key
+STRIPE_SECRET=your_stripe_secret_key
 
+```
 
 
 
